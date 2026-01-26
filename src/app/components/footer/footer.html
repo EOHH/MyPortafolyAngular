@@ -1,0 +1,39 @@
+<footer class="footer">
+  <div class="footer-top-section">
+    <p class="follow-text">¡SÍGUEME!</p>
+    <p class="handle-text">&#64;GOTTIDEV</p>
+  </div>
+
+  <div class="gallery-section">
+    <a *ngFor="let image of galleryImages" [href]="image.link" target="_blank" class="gallery-item" aria-label="Ver en Instagram">
+      <img [src]="image.src" [alt]="image.alt">
+    </a>
+  </div>
+
+  <div class="contact-links-section">
+    <a *ngFor="let item of contactInfo" [href]="item.link" class="contact-link" [attr.aria-label]="item.type === 'email' ? 'Enviar correo a ' + item.text : 'Ver ' + item.type + ' de ' + item.text">
+      <fa-icon [icon]="item.icon"></fa-icon>
+      <span class="contact-text">{{ item.text }}</span>
+    </a>
+  </div>
+
+  <hr class="footer-divider">
+
+  <div class="footer-bottom-section">
+    <p class="copyright-info">
+      &copy; {{ currentYear }} GOTTIDEV <br>
+      DESARROLLADOR DE SOFTWARE <br>
+      Diseñado y desarrollado por GottiDev <br>
+      Aviso Legal | Política de privacidad
+    </p>
+  </div>
+
+  <button
+    class="back-to-top"
+    [class.show]="isScrolled"
+    (click)="scrollToTop()"
+    aria-label="Volver arriba"
+  >
+    <fa-icon [icon]="['fas', 'arrow-up']"></fa-icon>
+  </button>
+</footer>

@@ -1,0 +1,500 @@
+/* src/app/components/hero/hero.css */
+
+.hero-section {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Altura exacta de la ventana */
+  background-color: #FF6347;
+  color: #e0e0e0;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Es CRÍTICO tener esto en tu styles.css global para evitar márgenes predeterminados */
+/*
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+*/
+
+.hero-content-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%; /* Ocupa toda la altura del contenedor padre */
+  position: relative;
+  z-index: 1;
+}
+
+/* Sección izquierda: Contenido de texto y acciones */
+.hero-left-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  background-color: #FFFFFF;
+  color: #333333;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+  z-index: 2;
+  height: 100%;
+  min-width: 0; /* Permite que el contenido se reduzca */
+}
+
+.hero-text-block {
+  max-width: 600px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSlideUp 1s ease-out forwards 0.5s;
+}
+
+@keyframes fadeInSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.greeting {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #666666;
+  margin-bottom: 10px;
+}
+
+.hero-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #333333;
+  line-height: 1.1;
+  word-break: break-word;
+}
+
+.hero-name span {
+  color: #FF6347;
+}
+
+.hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 600;
+  color: #666666;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.hero-tagline {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  line-height: 1.6;
+  color: #666666;
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+/* Botones de acción */
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.9rem 2.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: #FF6347;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #E64E33;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #FF6347;
+  border: 2px solid #FF6347;
+}
+
+.btn-secondary:hover {
+  background-color: #FF6347;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Sección derecha: Imagen de perfil */
+.hero-right-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px;
+  position: relative;
+  background-color: transparent;
+  height: 100%;
+  min-width: 0;
+}
+
+.profile-image {
+  max-width: 80%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
+  animation: scaleIn 1s ease-out forwards 0.8s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Barra lateral de Redes Sociales */
+.hero-social-sidebar {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 3;
+  opacity: 0;
+  transform: translateX(-20px) translateY(-50%);
+  animation: fadeInSlideRight 1s ease-out forwards 0.8s;
+}
+
+@keyframes fadeInSlideRight {
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+.hero-social-sidebar a {
+  color: #666666;
+  font-size: 1.6rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-social-sidebar a:hover {
+  color: #FF6347;
+  transform: translateX(5px);
+}
+
+/* Media Queries para Responsividad Mejorada */
+
+/* Tablets grandes */
+@media (max-width: 1200px) {
+  .hero-left-content {
+    padding: 1.5rem;
+  }
+  
+  .hero-tagline {
+    margin-bottom: 30px;
+  }
+  
+  .hero-actions {
+    gap: 15px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .hero-content-wrapper {
+    height: calc(100vh - 70px);
+    min-height: 550px;
+  }
+  
+  .hero-left-content {
+    clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+    padding: 1.5rem;
+  }
+  
+  .hero-social-sidebar {
+    left: 20px;
+    gap: 20px;
+  }
+  
+  .hero-social-sidebar a {
+    font-size: 1.4rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.8rem 1.8rem;
+    min-width: 160px;
+  }
+}
+
+/* Tablets pequeñas */
+@media (max-width: 900px) {
+  .hero-section {
+    height: 100vh; /* Mantiene altura completa */
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    padding: 0;
+    height: 100vh; /* Altura fija para evitar espacios */
+    background-color: #1a1a2e;
+  }
+
+  .hero-content-wrapper {
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden; /* Evita scroll innecesario */
+  }
+
+  .hero-left-content {
+    clip-path: none;
+    width: 100%;
+    padding: 2rem 1rem;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    flex: 1;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .greeting,
+  .hero-title,
+  .hero-tagline {
+    color: #c9d1d9;
+  }
+
+  .hero-name {
+    color: #e0e0e0;
+  }
+
+  .hero-text-block {
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .hero-tagline {
+    margin-bottom: 30px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .hero-right-image {
+    width: 100%;
+    padding: 1rem;
+    background-color: #1a1a2e;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .profile-image {
+    max-width: 70%;
+    max-height: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .hero-social-sidebar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+    animation: none;
+    opacity: 1;
+    gap: 30px;
+  }
+  
+  .hero-social-sidebar a {
+    color: #e0e0e0;
+    font-size: 1.5rem;
+  }
+  
+  .hero-social-sidebar a:hover {
+    transform: scale(1.1);
+    color: #FF6347;
+  }
+}
+
+/* Móviles medianos */
+@media (max-width: 600px) {
+  .hero-left-content {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .hero-text-block {
+    padding: 0 0.5rem;
+  }
+  
+  .hero-actions {
+    max-width: 350px;
+  }
+  
+  .profile-image {
+    max-width: 75%;
+    max-height: 250px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .hero-section {
+    height: 100vh;
+  }
+  
+  .hero-left-content {
+    padding: 1rem 0.5rem;
+    flex: 1;
+  }
+  
+  .hero-text-block {
+    padding: 0 0.25rem;
+  }
+  
+  .hero-tagline {
+    margin-bottom: 25px;
+  }
+  
+  .hero-actions {
+    gap: 12px;
+    max-width: 300px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.9rem 1.2rem;
+    min-width: auto;
+  }
+  
+  .hero-right-image {
+    padding: 1rem 0.5rem;
+    flex: 1;
+    min-height: 0;
+  }
+  
+  .profile-image {
+    max-width: 80%;
+    max-height: 100%;
+    height: auto;
+  }
+  
+  .hero-social-sidebar {
+    gap: 25px;
+    bottom: 15px;
+  }
+  
+  .hero-social-sidebar a {
+    font-size: 1.3rem;
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .hero-section {
+    height: 100vh;
+  }
+  
+  .hero-left-content {
+    padding: 0.75rem 0.25rem;
+    flex: 1;
+  }
+  
+  .hero-actions {
+    max-width: 280px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .hero-right-image {
+    flex: 1;
+    padding: 0.75rem 0.25rem;
+  }
+  
+  .profile-image {
+    max-width: 85%;
+    max-height: 100%;
+    height: auto;
+  }
+  
+  .hero-social-sidebar {
+    gap: 20px;
+    bottom: 10px;
+  }
+}

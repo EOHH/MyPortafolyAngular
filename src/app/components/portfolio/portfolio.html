@@ -1,0 +1,39 @@
+<section id="portfolio" class="portfolio-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ sectionHeader.title }}</h2>
+      <p>{{ sectionHeader.subtitle }}</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <div *ngFor="let project of projects" class="project-card">
+        <div class="project-image-wrapper">
+          <img [src]="project.image" [alt]="project.title" class="project-image">
+          <div class="project-overlay">
+            <div class="overlay-content">
+              <h3>{{ project.title }}</h3>
+              <p class="overlay-description">{{ project.description }}</p>
+              <div class="overlay-links">
+                <a [href]="project.liveLink" target="_blank" class="overlay-btn" *ngIf="project.liveLink !== '#'">
+                  <fa-icon [icon]="['fas', 'link']"></fa-icon> Demo
+                </a>
+                <a [href]="project.githubLink" target="_blank" class="overlay-btn" *ngIf="project.githubLink !== '#'">
+                  <fa-icon [icon]="['fab', 'github']"></fa-icon> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h4>{{ project.title }}</h4>
+          <p class="project-date">{{ project.date }}</p> <!-- ¡NUEVA LÍNEA PARA LA FECHA! -->
+          <div class="project-technologies">
+            <span *ngFor="let tech of project.technologies" class="tech-tag">
+              <fa-icon [icon]="tech.icon" *ngIf="tech.icon"></fa-icon> {{ tech.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

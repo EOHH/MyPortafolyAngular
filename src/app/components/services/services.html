@@ -1,0 +1,23 @@
+<section id="services" class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ sectionHeader.title }}</h2>
+      <p>{{ sectionHeader.subtitle }}</p>
+    </div>
+
+    <div class="services-grid">
+      <div *ngFor="let service of services" class="service-card">
+        <div class="service-icon-wrapper">
+          <fa-icon [icon]="service.icon" class="service-icon"></fa-icon>
+        </div>
+        <h3>{{ service.title }}</h3>
+        <p class="service-description">{{ service.description }}</p>
+        <div class="service-technologies">
+          <span *ngFor="let tech of service.technologies" class="tech-tag">
+            <fa-icon [icon]="tech.icon" *ngIf="tech.icon"></fa-icon> {{ tech.name }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

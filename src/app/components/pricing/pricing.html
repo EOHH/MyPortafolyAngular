@@ -1,0 +1,35 @@
+<section id="pricing" class="pricing-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ sectionHeader.title }}</h2>
+      <p>{{ sectionHeader.subtitle }}</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div *ngFor="let plan of pricingPlans" class="pricing-card" [class.recommended]="plan.isRecommended">
+        <div class="card-header">
+          <fa-icon [icon]="['fas', 'star']" class="recommended-icon" *ngIf="plan.isRecommended"></fa-icon>
+          <h3>{{ plan.name }}</h3>
+          <div class="price">
+            <span class="currency">{{ plan.price.includes('Personalizado') ? '' : '$' }}</span>
+            <span class="amount">{{ plan.price }}</span>
+            <span class="period" *ngIf="plan.period">{{ plan.period }}</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="features-list">
+            <li *ngFor="let feature of plan.features">
+              <fa-icon [icon]="feature.icon" [class.available]="feature.available" [class.not-available]="!feature.available"></fa-icon>
+              <span>{{ feature.text }}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a [href]="plan.buttonLink" class="btn-primary pricing-cta" [class.btn-recommended]="plan.isRecommended">
+            <fa-icon [icon]="['fas', 'envelope']"></fa-icon> {{ plan.buttonText }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

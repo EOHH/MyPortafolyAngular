@@ -1,0 +1,40 @@
+<header class="navbar" [class.scrolled]="isScrolled">
+  <div class="navbar-container">
+    <a href="#hero" class="logo">Gotti<span>Dev</span></a>
+
+    <nav class="nav-links" [class.active]="menuOpen">
+      <!-- Los enlaces de navegación con íconos -->
+      <a href="#hero" (click)="closeMenu()">
+        <fa-icon [icon]="['fas', 'home']"></fa-icon> Inicio
+      </a>
+      <a href="#about" (click)="closeMenu()">
+        <fa-icon [icon]="['fas', 'user']"></fa-icon> Sobre mí
+      </a>
+      <a href="#services" (click)="closeMenu()">
+        <fa-icon [icon]="['fas', 'code']"></fa-icon> Servicios
+      </a>
+      <a href="#portfolio" (click)="closeMenu()">
+        <fa-icon [icon]="['fas', 'briefcase']"></fa-icon> Proyectos
+      </a>
+      <a href="#pricing" (click)="closeMenu()">
+        <fa-icon [icon]="['fas', 'dollar-sign']"></fa-icon> Precios
+      </a>
+      <a href="#contact" (click)="closeMenu()">
+        <fa-icon [icon]="['fas', 'envelope']"></fa-icon> Contacto
+      </a>
+    </nav>
+
+    <div class="navbar-actions">
+      <!-- Botón de Llamada a la Acción (CTA) -->
+      <!-- Asegúrate de tener un archivo 'your-cv.pdf' en tu carpeta 'assets' -->
+      <a href="/assets/pdf/CV_Edilson_Huaman_2025.pdf" download class="btn-primary">
+        <fa-icon [icon]="['fas', 'download']"></fa-icon> Mi CV
+      </a>
+
+      <!-- Botón de menú hamburguesa con ícono de Font Awesome -->
+      <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle navigation">
+        <fa-icon [icon]="menuOpen ? ['fas', 'times'] : ['fas', 'bars']"></fa-icon>
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,204 @@
+.footer {
+  background-color: #1a1a2e; /* Fondo oscuro */
+  color: #e0e0e0;
+  padding: 4rem 1.5rem 2rem;
+  text-align: center;
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.footer-top-section {
+  margin-bottom: 30px;
+}
+
+.follow-text {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c9d1d9;
+  margin-bottom: 5px;
+}
+
+.handle-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FF6347; /* ¡COLOR CAMBIADO! Rojo medio naranja para el handle */
+}
+
+.gallery-section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  display: block;
+  width: 18%;
+  max-width: 120px;
+  height: auto;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contact-links-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px 50px;
+  margin-bottom: 50px;
+}
+
+.contact-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #c9d1d9;
+  transition: color 0.3s ease;
+}
+
+.contact-link fa-icon {
+  font-size: 2.2rem;
+  color: #FF6347; /* ¡COLOR CAMBIADO! Rojo medio naranja para los íconos de contacto */
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #FF8C69; /* ¡COLOR CAMBIADO! Un tono un poco más claro al hover */
+}
+
+.contact-link:hover fa-icon {
+  color: #FF8C69; /* ¡COLOR CAMBIADO! Ícono más claro al hover */
+}
+
+.contact-text {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.footer-divider {
+  width: 80%;
+  max-width: 600px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 50px auto;
+}
+
+.footer-bottom-section {
+  font-size: 0.8rem;
+  color: #c9d1d9;
+  line-height: 1.6;
+}
+
+.copyright-info br {
+  display: block;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #FF6347; /* ¡COLOR CAMBIADO! Rojo medio naranja para el botón */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background-color: #E64E33; /* ¡COLOR CAMBIADO! Tono más oscuro al hover */
+  transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+  .gallery-item {
+    width: 22%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1rem 1.5rem;
+  }
+
+  .handle-text {
+    font-size: 1.2rem;
+  }
+
+  .gallery-item {
+    width: 30%;
+    max-width: 100px;
+  }
+
+  .contact-links-section {
+    gap: 20px 30px;
+  }
+
+  .contact-link fa-icon {
+    font-size: 1.8rem;
+  }
+
+  .contact-text {
+    font-size: 0.85rem;
+  }
+
+  .footer-divider {
+    margin: 30px auto;
+  }
+
+  .copyright-info {
+    font-size: 0.75rem;
+  }
+
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-section {
+    gap: 5px;
+  }
+  .gallery-item {
+    width: 45%;
+  }
+}

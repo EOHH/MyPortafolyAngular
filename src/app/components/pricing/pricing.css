@@ -1,0 +1,303 @@
+/* src/app/components/pricing/pricing.css */
+
+.pricing-section {
+  padding: 80px 0;
+  background-color: #1a1a2e; /* Fondo oscuro */
+  color: #e0e0e0;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: #FF6347; /* Color de acento */
+  border-radius: 2px;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: #c9d1d9;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cuadrícula adaptable */
+  gap: 30px; /* Espacio entre las tarjetas */
+  align-items: center; /* Alinea las tarjetas por el centro */
+}
+
+.pricing-card {
+  background-color: #2a2a4a; /* Fondo de tarjeta ligeramente más claro */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+  border: 2px solid transparent; /* Borde por defecto transparente */
+  position: relative; /* Para el icono de recomendado */
+}
+
+.pricing-card.recommended {
+  border-color: #FF6347; /* Borde de acento para el plan recomendado */
+  transform: scale(1.05); /* Ligeramente más grande */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4), 0 0 0 5px rgba(255, 99, 71, 0.2); /* Sombra y halo */
+  z-index: 1; /* Asegura que esté por encima de los otros */
+}
+
+.pricing-card:hover:not(.recommended) {
+  transform: translateY(-5px); /* Elevación sutil para los no recomendados */
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+.pricing-card.recommended .recommended-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #FFD700; /* Color dorado para la estrella */
+  font-size: 1.8rem;
+  animation: pulse 1.5s infinite ease-in-out; /* Animación de pulsación */
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+
+.card-header {
+  background-color: #3a3a5a; /* Fondo del encabezado de la tarjeta */
+  padding: 30px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-header h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+}
+
+.price {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.currency {
+  font-size: 1.5rem;
+  vertical-align: super; /* Alinea el símbolo de moneda */
+  color: #c9d1d9;
+}
+
+.amount {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #FF6347; /* Color de acento para el precio */
+}
+
+.period {
+  font-size: 0.9rem;
+  color: #c9d1d9;
+  display: block;
+  margin-top: 5px;
+}
+
+.card-body {
+  padding: 30px 20px;
+  flex-grow: 1; /* Permite que el cuerpo ocupe el espacio restante */
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #c9d1d9;
+}
+
+.features-list li:last-child {
+  margin-bottom: 0;
+}
+
+.features-list fa-icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.features-list fa-icon.available {
+  color: #28a745; /* Verde para disponible */
+}
+
+.features-list fa-icon.not-available {
+  color: #dc3545; /* Rojo para no disponible */
+  opacity: 0.6;
+}
+
+.card-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.pricing-cta {
+  background-color: #FF6347; /* Color de acento para el CTA */
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-flex; /* Para alinear ícono y texto */
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-cta:hover {
+  background-color: #E64E33; /* Tono más oscuro al hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-cta.btn-recommended {
+  background-color: #FF8C69; /* Tono de acento diferente para el recomendado */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-cta.btn-recommended:hover {
+  background-color: #FF6347; /* Vuelve al color principal al hover */
+}
+
+
+/* ========================================= */
+/* Media Queries Responsivas       */
+/* ========================================= */
+
+/* Tablet y móvil (hasta 992px) */
+@media (max-width: 992px) {
+  .section-header h2 {
+    font-size: 2.2rem;
+  }
+  .section-header p {
+    font-size: 1rem;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 columnas en tablets */
+    gap: 25px;
+  }
+
+  .pricing-card.recommended {
+    transform: scale(1.03); /* Menos escala en tablets */
+  }
+
+  .card-header h3 {
+    font-size: 1.8rem;
+  }
+
+  .amount {
+    font-size: 3rem;
+  }
+
+  .features-list li {
+    font-size: 0.95rem;
+  }
+
+  .pricing-cta {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Móvil pequeño (hasta 576px) */
+@media (max-width: 576px) {
+  .pricing-section {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .section-header p {
+    font-size: 0.9rem;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr; /* Una sola columna en móvil muy pequeño */
+    gap: 20px;
+  }
+
+  .pricing-card.recommended {
+    transform: scale(1); /* Sin escala en móvil muy pequeño */
+  }
+
+  .card-header {
+    padding: 25px 15px;
+  }
+
+  .card-header h3 {
+    font-size: 1.6rem;
+  }
+
+  .amount {
+    font-size: 2.8rem;
+  }
+
+  .card-body {
+    padding: 25px 15px;
+  }
+
+  .features-list li {
+    font-size: 0.9rem;
+  }
+
+  .pricing-cta {
+    width: 90%; /* Ancho casi completo para los botones */
+    margin: 0 auto; /* Centrar */
+    display: flex; /* Asegura que el botón se centre si es flex */
+    justify-content: center;
+    font-size: 0.85rem;
+    padding: 12px 15px;
+  }
+}

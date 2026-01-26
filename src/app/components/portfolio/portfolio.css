@@ -1,0 +1,320 @@
+/* src/app/components/portfolio/portfolio.css */
+
+.portfolio-section {
+  padding: 80px 0;
+  background-color: #1a1a2e; /* Fondo oscuro */
+  color: #e0e0e0;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: #FF6347; /* Color de acento */
+  border-radius: 2px;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: #c9d1d9;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Cuadrícula adaptable */
+  gap: 30px; /* Espacio entre las tarjetas */
+}
+
+.project-card {
+  background-color: #2a2a4a; /* Fondo de tarjeta ligeramente más claro */
+  border-radius: 15px;
+  overflow: hidden; /* Importante para la imagen y el overlay */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-10px); /* Elevación al hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.project-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Altura fija para las imágenes de proyecto */
+  overflow: hidden;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el área */
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05); /* Ligeramente más grande al hover */
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 99, 71, 0.9); /* Overlay semi-transparente con color de acento */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Inicialmente oculto */
+  transition: opacity 0.4s ease;
+  z-index: 1; /* Asegura que esté sobre la imagen */
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1; /* Visible al hover */
+}
+
+.overlay-content {
+  color: white;
+  text-align: center;
+  padding: 20px;
+  transform: translateY(20px); /* Ligeramente desplazado para animación */
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.project-card:hover .overlay-content {
+  transform: translateY(0); /* Desliza a la posición normal */
+  opacity: 1;
+}
+
+.overlay-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.overlay-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.overlay-links {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.overlay-btn {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo de botón semi-transparente */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.overlay-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4); /* Más opaco al hover */
+}
+
+.overlay-btn fa-icon {
+  font-size: 1rem;
+}
+
+.project-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.project-info h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin-bottom: 5px; /* Espacio reducido para la fecha */
+}
+
+.project-date { /* ¡NUEVO ESTILO PARA LA FECHA! */
+  font-size: 0.85rem;
+  color: #FF8C69; /* Tono de acento para la fecha */
+  margin-bottom: 15px; /* Espacio debajo de la fecha */
+  display: block;
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  background-color: #3a3a5a;
+  color: #FF8C69;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tech-tag fa-icon {
+  font-size: 0.8rem;
+}
+
+/* ========================================= */
+/* Media Queries Responsivas       */
+/* ========================================= */
+
+/* Tablet y móvil (hasta 992px) */
+@media (max-width: 992px) {
+  .section-header h2 {
+    font-size: 2.2rem;
+  }
+  .section-header p {
+    font-size: 1rem;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 columnas en tablets */
+    gap: 25px;
+  }
+
+  .project-image-wrapper {
+    height: 220px; /* Ligeramente más pequeña en tablets */
+  }
+
+  .overlay-content h3 {
+    font-size: 1.6rem;
+  }
+
+  .overlay-description {
+    font-size: 0.9rem;
+  }
+
+  .overlay-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .project-info {
+    padding: 15px;
+  }
+
+  .project-info h4 {
+    font-size: 1.2rem;
+  }
+
+  .project-date { /* Ajuste de tamaño de fuente en tablet */
+    font-size: 0.8rem;
+  }
+
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+}
+
+/* Móvil pequeño (hasta 576px) */
+@media (max-width: 576px) {
+  .portfolio-section {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .section-header p {
+    font-size: 0.9rem;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr; /* Una sola columna en móvil muy pequeño */
+    gap: 20px;
+  }
+
+  .project-image-wrapper {
+    height: 200px; /* Altura más pequeña en móvil */
+  }
+
+  .overlay-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .overlay-description {
+    font-size: 0.85rem;
+  }
+
+  .overlay-links {
+    flex-direction: column; /* Botones apilados en móvil */
+    gap: 10px;
+  }
+
+  .overlay-btn {
+    width: 80%; /* Ancho completo para los botones */
+    margin: 0 auto; /* Centrar */
+    justify-content: center; /* Centrar contenido del botón */
+    font-size: 0.85rem;
+    padding: 10px 15px;
+  }
+
+  .project-info {
+    padding: 15px;
+  }
+
+  .project-info h4 {
+    font-size: 1.1rem;
+  }
+
+  .project-date { /* Ajuste de tamaño de fuente en móvil */
+    font-size: 0.75rem;
+  }
+
+  .project-technologies {
+    justify-content: center; /* Centrar tags en móvil */
+  }
+
+  .tech-tag {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+}

@@ -1,0 +1,65 @@
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ aboutMe.title }}</h2>
+      <p>{{ aboutMe.subtitle }}</p>
+    </div>
+
+    <div class="about-content-wrapper">
+      <div class="about-text-content">
+        <p class="intro-paragraph">{{ aboutMe.introduction }}</p>
+        <p class="philosophy-paragraph">{{ aboutMe.philosophy }}</p>
+
+        <h3>Logros Destacados</h3>
+        <div class="achievements-grid">
+          <div *ngFor="let achievement of achievements" class="achievement-item">
+            <fa-icon [icon]="achievement.icon" class="achievement-icon"></fa-icon>
+            <h4>{{ achievement.title }}</h4>
+            <p>{{ achievement.description }}</p>
+          </div>
+        </div>
+
+        <h3>Habilidades Técnicas</h3>
+        <div class="skills-grid">
+          <div *ngFor="let skill of technicalSkills" class="skill-item">
+            <fa-icon [icon]="skill.icon" class="skill-icon"></fa-icon>
+            <div class="skill-info">
+              <span class="skill-name">{{ skill.name }}</span>
+              <div class="progress-bar-container">
+                <div class="progress-bar" [style.width.%]="skill.level"></div>
+              </div>
+              <span class="skill-level">{{ skill.level }}%</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Habilidades Blandas</h3>
+        <div class="soft-skills-grid">
+          <div *ngFor="let skill of softSkills" class="soft-skill-item">
+            <fa-icon [icon]="skill.icon" class="soft-skill-icon"></fa-icon>
+            <span class="soft-skill-name">{{ skill.name }}</span>
+          </div>
+        </div>
+
+        <!-- Puedes añadir un botón para descargar CV aquí si quieres duplicarlo -->
+        <!-- <a href="/assets/pdf/CV_Edilson_Huaman_2025.pdf" download class="btn-primary about-cta">
+          <fa-icon [icon]="['fas', 'download']"></fa-icon> Descargar CV Completo
+        </a> -->
+      </div>
+
+      <div class="about-image-content">
+        <img [src]="aboutMe.profileImage" alt="Edilson Huaman - Perfil" class="about-profile-image">
+        <!-- Puedes añadir aquí un pequeño bloque de "Datos rápidos" si lo deseas -->
+        <div class="quick-facts">
+          <h4>Datos Rápidos</h4>
+          <ul>
+            <li><strong>Nombre:</strong> Edilson Huaman</li>
+            <li><strong>Ubicación:</strong> Challabamba, Cusco, Perú</li>
+            <li><strong>Especialidad:</strong> Desarrollo Full-Stack</li>
+            <li><strong>Educación:</strong> TECSUP (Diseño y Desarrollo de Software)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
