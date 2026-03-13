@@ -1,6 +1,7 @@
 <section id="hero" class="hero-section">
   <div class="hero-content-wrapper">
-    <!-- Contenido Izquierdo: Tu información y CTAs (con fondo blanco) -->
+
+    <!-- Lado izquierdo: texto, botones e íconos sociales en móvil -->
     <div class="hero-left-content">
       <div class="hero-text-block">
         <p class="greeting">¡Hola, soy!</p>
@@ -16,18 +17,40 @@
             Descargar CV
           </a>
         </div>
+
+        <!--
+          Íconos sociales para MÓVIL — dentro del flujo normal del DOM.
+          En desktop se ocultan con display:none y se usan los del sidebar.
+        -->
+        <div class="hero-social-mobile">
+          <a *ngFor="let link of socialLinks"
+             [href]="link.url"
+             target="_blank"
+             [attr.aria-label]="'Visitar mi ' + link.name">
+            <fa-icon [icon]="link.icon"></fa-icon>
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- Contenido Derecho: Tu imagen de perfil (con fondo rojizo-anaranjado) -->
+    <!-- Lado derecho: imagen de perfil -->
     <div class="hero-right-image">
-      <img [src]="profileImageUrl" alt="Edilson Huaman - Desarrollador de Software" class="profile-image" loading="lazy">
+      <img [src]="profileImageUrl"
+           alt="Edilson Huaman - Desarrollador de Software"
+           class="profile-image"
+           loading="lazy">
     </div>
   </div>
 
-  <!-- Barra lateral de Redes Sociales (posición ajustada al nuevo diseño) -->
+  <!--
+    Íconos sociales para DESKTOP — posición absoluta en el lado izquierdo.
+    En móvil se ocultan con display:none.
+  -->
   <div class="hero-social-sidebar">
-    <a *ngFor="let link of socialLinks" [href]="link.url" target="_blank" [attr.aria-label]="'Visitar mi ' + link.name">
+    <a *ngFor="let link of socialLinks"
+       [href]="link.url"
+       target="_blank"
+       [attr.aria-label]="'Visitar mi ' + link.name">
       <fa-icon [icon]="link.icon"></fa-icon>
     </a>
   </div>

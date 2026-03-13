@@ -1,3 +1,9 @@
+<!--
+  IMPORTANTE: Asegúrate de tener esta línea en tu index.html dentro de <head>:
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  Sin este meta tag, el CSS responsive NO funciona en celulares.
+-->
+
 <section id="portfolio" class="portfolio-section">
   <div class="container">
     <div class="section-header">
@@ -7,8 +13,11 @@
 
     <div class="portfolio-grid">
       <div *ngFor="let project of projects" class="project-card">
+
         <div class="project-image-wrapper">
           <img [src]="project.image" [alt]="project.title" class="project-image">
+
+          <!-- Overlay: visible solo con hover en desktop -->
           <div class="project-overlay">
             <div class="overlay-content">
               <h3>{{ project.title }}</h3>
@@ -24,15 +33,27 @@
             </div>
           </div>
         </div>
+
+        <!-- Links visibles en móvil/touch (reemplazan al overlay) -->
+        <div class="mobile-links">
+          <a [href]="project.liveLink" target="_blank" class="mobile-link-btn" *ngIf="project.liveLink !== '#'">
+            <fa-icon [icon]="['fas', 'link']"></fa-icon> Demo
+          </a>
+          <a [href]="project.githubLink" target="_blank" class="mobile-link-btn" *ngIf="project.githubLink !== '#'">
+            <fa-icon [icon]="['fab', 'github']"></fa-icon> GitHub
+          </a>
+        </div>
+
         <div class="project-info">
           <h4>{{ project.title }}</h4>
-          <p class="project-date">{{ project.date }}</p> <!-- ¡NUEVA LÍNEA PARA LA FECHA! -->
+          <span class="project-date">{{ project.date }}</span>
           <div class="project-technologies">
             <span *ngFor="let tech of project.technologies" class="tech-tag">
               <fa-icon [icon]="tech.icon" *ngIf="tech.icon"></fa-icon> {{ tech.name }}
             </span>
           </div>
         </div>
+
       </div>
     </div>
   </div>

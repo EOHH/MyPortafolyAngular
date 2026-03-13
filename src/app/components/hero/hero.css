@@ -1,10 +1,14 @@
 /* src/app/components/hero/hero.css */
 
+/* =========================================
+   BASE — Desktop (layout horizontal)
+   ========================================= */
+
 .hero-section {
   display: flex;
   position: relative;
   width: 100%;
-  height: 100vh; /* Altura exacta de la ventana */
+  height: 100vh;
   background-color: #FF6347;
   color: #e0e0e0;
   overflow: hidden;
@@ -14,25 +18,18 @@
   padding: 0;
 }
 
-/* Es CRÍTICO tener esto en tu styles.css global para evitar márgenes predeterminados */
-/*
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow-x: hidden;
-}
-*/
-
 .hero-content-wrapper {
   display: flex;
   width: 100%;
-  height: 100%; /* Ocupa toda la altura del contenedor padre */
+  height: 100%;
   position: relative;
   z-index: 1;
 }
 
-/* Sección izquierda: Contenido de texto y acciones */
+/* =========================================
+   LADO IZQUIERDO — Texto y botones
+   ========================================= */
+
 .hero-left-content {
   flex: 1;
   display: flex;
@@ -48,7 +45,8 @@ html, body {
   clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
   z-index: 2;
   height: 100%;
-  min-width: 0; /* Permite que el contenido se reduzca */
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .hero-text-block {
@@ -67,16 +65,16 @@ html, body {
 }
 
 .greeting {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-size: clamp(0.85rem, 2.5vw, 1.2rem);
   color: #666666;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .hero-name {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
   font-weight: 800;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #333333;
   line-height: 1.1;
   word-break: break-word;
@@ -88,25 +86,28 @@ html, body {
 
 .hero-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.8rem);
   font-weight: 600;
   color: #666666;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   line-height: 1.3;
 }
 
 .hero-tagline {
-  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
   line-height: 1.6;
   color: #666666;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   max-width: 500px;
 }
 
-/* Botones de acción */
+/* =========================================
+   BOTONES
+   ========================================= */
+
 .hero-actions {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
@@ -118,7 +119,7 @@ html, body {
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,9 +128,10 @@ html, body {
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  min-width: 180px;
+  min-width: 160px;
   text-align: center;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .btn-primary {
@@ -156,7 +158,10 @@ html, body {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Sección derecha: Imagen de perfil */
+/* =========================================
+   LADO DERECHO — Imagen
+   ========================================= */
+
 .hero-right-image {
   flex: 1;
   display: flex;
@@ -174,8 +179,6 @@ html, body {
   max-height: 90%;
   width: auto;
   height: auto;
-  border-radius: 0;
-  box-shadow: none;
   object-fit: cover;
   animation: scaleIn 1s ease-out forwards 0.8s;
   opacity: 0;
@@ -189,7 +192,10 @@ html, body {
   }
 }
 
-/* Barra lateral de Redes Sociales */
+/* =========================================
+   SOCIAL SIDEBAR — Desktop (posición absoluta)
+   ========================================= */
+
 .hero-social-sidebar {
   position: absolute;
   left: 30px;
@@ -200,11 +206,19 @@ html, body {
   gap: 25px;
   z-index: 3;
   opacity: 0;
-  transform: translateX(-20px) translateY(-50%);
   animation: fadeInSlideRight 1s ease-out forwards 0.8s;
 }
 
+/* Social sidebar en móvil: se oculta (se usa .hero-social-mobile) */
+.hero-social-mobile {
+  display: none;
+}
+
 @keyframes fadeInSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) translateY(-50%);
+  }
   to {
     opacity: 1;
     transform: translateX(0) translateY(-50%);
@@ -222,279 +236,242 @@ html, body {
   transform: translateX(5px);
 }
 
-/* Media Queries para Responsividad Mejorada */
+/* =========================================
+   TABLET GRANDE — 1024px
+   ========================================= */
 
-/* Tablets grandes */
-@media (max-width: 1200px) {
-  .hero-left-content {
-    padding: 1.5rem;
-  }
-  
-  .hero-tagline {
-    margin-bottom: 30px;
-  }
-  
-  .hero-actions {
-    gap: 15px;
-  }
-}
-
-/* Tablets */
 @media (max-width: 1024px) {
-  .hero-content-wrapper {
-    height: calc(100vh - 70px);
-    min-height: 550px;
-  }
-  
   .hero-left-content {
     clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
     padding: 1.5rem;
   }
-  
+
   .hero-social-sidebar {
     left: 20px;
     gap: 20px;
   }
-  
+
   .hero-social-sidebar a {
     font-size: 1.4rem;
   }
-  
+
   .btn-primary,
   .btn-secondary {
     padding: 0.8rem 1.8rem;
-    min-width: 160px;
+    min-width: 140px;
   }
 }
 
-/* Tablets pequeñas */
-@media (max-width: 900px) {
-  .hero-section {
-    height: 100vh; /* Mantiene altura completa */
-  }
-  
-  .hero-actions {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    max-width: 300px;
-  }
-}
+/* =========================================
+   MÓVIL — hasta 768px
+   Layout vertical: texto arriba, imagen abajo
+   Social icons dentro del flujo normal
+   ========================================= */
 
-/* Móviles grandes */
 @media (max-width: 768px) {
+  /* La sección se convierte en columna scrollable */
   .hero-section {
+    height: auto;
+    min-height: 100svh; /* svh respeta la barra de navegación del browser */
     flex-direction: column;
-    padding: 0;
-    height: 100vh; /* Altura fija para evitar espacios */
     background-color: #1a1a2e;
+    overflow-y: auto;
   }
 
   .hero-content-wrapper {
     flex-direction: column;
-    height: 100%;
-    overflow: hidden; /* Evita scroll innecesario */
+    height: auto;
+    flex: 1;
   }
 
+  /* --- Bloque de texto --- */
   .hero-left-content {
     clip-path: none;
     width: 100%;
-    padding: 2rem 1rem;
+    flex: none; /* no estira, toma su tamaño natural */
+    height: auto;
+    padding: 48px 24px 24px; /* espacio top para navbar */
     background-color: #1a1a2e;
     color: #e0e0e0;
-    flex: 1;
-    justify-content: center;
-    overflow: hidden;
+    box-shadow: none;
   }
 
-  .greeting,
-  .hero-title,
-  .hero-tagline {
+  .hero-text-block {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .greeting {
     color: #c9d1d9;
+    margin-bottom: 6px;
   }
 
   .hero-name {
     color: #e0e0e0;
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
+    margin-bottom: 8px;
   }
 
-  .hero-text-block {
-    text-align: center;
-    padding: 0 1rem;
+  .hero-title {
+    color: #c9d1d9;
+    font-size: clamp(0.9rem, 4.5vw, 1.2rem);
+    margin-bottom: 12px;
   }
 
   .hero-tagline {
-    margin-bottom: 30px;
+    color: #c9d1d9;
+    font-size: clamp(0.82rem, 3.8vw, 1rem);
+    margin-bottom: 24px;
+    max-width: 100%;
   }
 
+  /* --- Botones apilados, ancho completo --- */
   .hero-actions {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     width: 100%;
-    max-width: 400px;
+    max-width: 340px;
     margin: 0 auto;
   }
 
   .btn-primary,
   .btn-secondary {
     width: 100%;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.9rem 1rem;
+    font-size: 0.95rem;
+    min-width: unset;
+    white-space: normal; /* permite wrap si el texto es largo */
+  }
+
+  /* --- Íconos sociales en flujo normal (debajo de botones) --- */
+  .hero-social-sidebar {
+    display: none; /* ocultar el absolute */
+  }
+
+  .hero-social-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 28px;
+    padding: 20px 0 8px;
+    width: 100%;
+  }
+
+  .hero-social-mobile a {
+    color: #e0e0e0;
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+
+  .hero-social-mobile a:active {
+    color: #FF6347;
+    transform: scale(1.15);
+  }
+
+  /* --- Imagen de perfil --- */
+  .hero-right-image {
+    width: 100%;
+    flex: none;
+    height: auto;
+    padding: 16px 24px 24px;
+    background-color: #FF6347;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .profile-image {
+    max-width: 60%;
+    max-height: 320px;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* =========================================
+   MÓVIL PEQUEÑO — hasta 480px
+   ========================================= */
+
+@media (max-width: 480px) {
+  .hero-left-content {
+    padding: 40px 16px 20px;
+  }
+
+  .hero-name {
+    font-size: clamp(1.5rem, 9vw, 2rem);
+  }
+
+  .hero-title {
+    font-size: clamp(0.88rem, 5vw, 1.1rem);
+  }
+
+  .hero-tagline {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-actions {
+    max-width: 300px;
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .hero-social-mobile {
+    gap: 24px;
+    padding: 16px 0 4px;
+  }
+
+  .hero-social-mobile a {
+    font-size: 1.3rem;
   }
 
   .hero-right-image {
-    width: 100%;
-    padding: 1rem;
-    background-color: #1a1a2e;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    min-height: 0;
+    padding: 12px 16px 20px;
+  }
+
+  .profile-image {
+    max-width: 65%;
+    max-height: 260px;
+  }
+}
+
+/* =========================================
+   MÓVIL MUY PEQUEÑO — hasta 360px
+   ========================================= */
+
+@media (max-width: 360px) {
+  .hero-left-content {
+    padding: 36px 12px 16px;
+  }
+
+  .hero-name {
+    font-size: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 0.88rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.8rem;
+  }
+
+  .hero-actions {
+    max-width: 260px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    font-size: 0.85rem;
+    padding: 0.8rem 0.8rem;
   }
 
   .profile-image {
     max-width: 70%;
-    max-height: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  .hero-social-sidebar {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: row;
-    justify-content: center;
-    width: auto;
-    padding: 0;
-    background-color: transparent;
-    animation: none;
-    opacity: 1;
-    gap: 30px;
-  }
-  
-  .hero-social-sidebar a {
-    color: #e0e0e0;
-    font-size: 1.5rem;
-  }
-  
-  .hero-social-sidebar a:hover {
-    transform: scale(1.1);
-    color: #FF6347;
-  }
-}
-
-/* Móviles medianos */
-@media (max-width: 600px) {
-  .hero-left-content {
-    padding: 1.5rem 0.75rem;
-  }
-  
-  .hero-text-block {
-    padding: 0 0.5rem;
-  }
-  
-  .hero-actions {
-    max-width: 350px;
-  }
-  
-  .profile-image {
-    max-width: 75%;
-    max-height: 250px;
-  }
-}
-
-/* Móviles pequeños */
-@media (max-width: 480px) {
-  .hero-section {
-    height: 100vh;
-  }
-  
-  .hero-left-content {
-    padding: 1rem 0.5rem;
-    flex: 1;
-  }
-  
-  .hero-text-block {
-    padding: 0 0.25rem;
-  }
-  
-  .hero-tagline {
-    margin-bottom: 25px;
-  }
-  
-  .hero-actions {
-    gap: 12px;
-    max-width: 300px;
-  }
-  
-  .btn-primary,
-  .btn-secondary {
-    padding: 0.9rem 1.2rem;
-    min-width: auto;
-  }
-  
-  .hero-right-image {
-    padding: 1rem 0.5rem;
-    flex: 1;
-    min-height: 0;
-  }
-  
-  .profile-image {
-    max-width: 80%;
-    max-height: 100%;
-    height: auto;
-  }
-  
-  .hero-social-sidebar {
-    gap: 25px;
-    bottom: 15px;
-  }
-  
-  .hero-social-sidebar a {
-    font-size: 1.3rem;
-  }
-}
-
-/* Móviles muy pequeños */
-@media (max-width: 360px) {
-  .hero-section {
-    height: 100vh;
-  }
-  
-  .hero-left-content {
-    padding: 0.75rem 0.25rem;
-    flex: 1;
-  }
-  
-  .hero-actions {
-    max-width: 280px;
-  }
-  
-  .btn-primary,
-  .btn-secondary {
-    padding: 0.8rem 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .hero-right-image {
-    flex: 1;
-    padding: 0.75rem 0.25rem;
-  }
-  
-  .profile-image {
-    max-width: 85%;
-    max-height: 100%;
-    height: auto;
-  }
-  
-  .hero-social-sidebar {
-    gap: 20px;
-    bottom: 10px;
+    max-height: 220px;
   }
 }
