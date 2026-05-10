@@ -1,7 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Light Theme Variables (Default) */
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: #e2e8f0;
+  --accent-color: #FF6347;
+  --accent-hover: #E64E33;
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: #334155;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
-}
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

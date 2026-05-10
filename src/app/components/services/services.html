@@ -6,18 +6,24 @@
     </div>
 
     <div class="services-grid">
-      <div *ngFor="let service of services" class="service-card">
+      @for (service of services; track service.title) {
+      <div class="service-card">
         <div class="service-icon-wrapper">
           <fa-icon [icon]="service.icon" class="service-icon"></fa-icon>
         </div>
         <h3>{{ service.title }}</h3>
         <p class="service-description">{{ service.description }}</p>
         <div class="service-technologies">
-          <span *ngFor="let tech of service.technologies" class="tech-tag">
-            <fa-icon [icon]="tech.icon" *ngIf="tech.icon"></fa-icon> {{ tech.name }}
+          @for (tech of service.technologies; track tech.name) {
+          <span class="tech-tag">
+            @if (tech.icon) { <fa-icon [icon]="tech.icon"></fa-icon> } {{ tech.name }}
           </span>
+          }
         </div>
       </div>
+      } @empty {
+      <p>No hay servicios disponibles.</p>
+      }
     </div>
   </div>
 </section>

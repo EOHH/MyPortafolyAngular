@@ -1,0 +1,47 @@
+<section id="experience" class="experience-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Experiencia Profesional</h2>
+      <p>Mi trayectoria y evolución como desarrollador de software</p>
+    </div>
+
+    <div class="timeline-container">
+      @for (exp of experiences; track exp.id) {
+        <div class="timeline-item" #timelineItem>
+          <!-- Línea y punto central -->
+          <div class="timeline-marker">
+            <div class="timeline-icon-wrapper">
+              <fa-icon [icon]="exp.icon"></fa-icon>
+            </div>
+            <div class="timeline-line"></div>
+          </div>
+
+          <!-- Contenido de la tarjeta -->
+          <div class="timeline-content">
+            <div class="timeline-card">
+              <div class="card-header">
+                <span class="period-badge">{{ exp.period }}</span>
+                <h3 class="role">{{ exp.role }}</h3>
+                <h4 class="company">
+                  <fa-icon [icon]="['fas', 'briefcase']"></fa-icon> {{ exp.company }}
+                </h4>
+              </div>
+              
+              <div class="card-body">
+                <p class="description">{{ exp.description }}</p>
+                <ul class="highlights-list">
+                  @for (highlight of exp.highlights; track highlight) {
+                    <li>
+                      <fa-icon [icon]="['fas', 'check-circle']" class="check-icon"></fa-icon>
+                      <span>{{ highlight }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

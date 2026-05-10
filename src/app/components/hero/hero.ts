@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -19,11 +19,12 @@ import { faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
 export class HeroComponent implements OnInit {
 
   name = 'Edilson Huaman';
-  title = 'Desarrollador de Software Full-Stack';
-  tagline = 'Transformo ideas en soluciones digitales eficientes, con código limpio, enfoque modular y experiencia sólida en diseño y desarrollo de interfaces intuitivas.';
+  title = 'Desarrollador Full Stack';
+  specialization = 'Java (Spring Boot) | React | Node.js | Flutter';
+  tagline = 'Construyendo experiencias digitales asombrosas y arquitecturas robustas desde cero.';
 
-  // **NUEVO**: URL de tu imagen de perfil para el Hero
-  profileImageUrl = 'assets/img/profile-hero.jpg'; // Asegúrate de tener esta imagen en src/assets/
+  profileImageUrl = 'assets/img/profile-hero.jpg'; 
+  cvLink = 'assets/CV_EDILSON_HUAMAN_2026.pdf';
 
   socialLinks = [
     { icon: faGithub, url: 'https://github.com/EOHH', name: 'GitHub' },
@@ -37,19 +38,28 @@ export class HeroComponent implements OnInit {
     this.faLibrary.addIcons(
       faGithub,
       faLinkedinIn,
-      faEnvelope
+      faEnvelope,
+      faArrowRight,
+      faDownload
     );
   }
 
   ngOnInit(): void {}
 
-  viewProjects() {
-    console.log('Ver Proyectos clicado');
-    // window.location.href = '#portfolio'; // Descomentar para scroll a la sección
+  // Efecto magnético para el botón principal
+  magneticMove(event: MouseEvent) {
+    const target = event.currentTarget as HTMLElement;
+    const rect = target.getBoundingClientRect();
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+    
+    // Movimiento sutil basado en el centro del botón
+    target.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
   }
 
-  downloadCV() {
-    console.log('Descargar CV clicado');
-    // El 'download' en el HTML ya maneja la descarga
+  magneticLeave(event: MouseEvent) {
+    const target = event.currentTarget as HTMLElement;
+    // Restaurar a la posición original
+    target.style.transform = 'translate(0px, 0px)';
   }
 }

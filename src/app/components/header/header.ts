@@ -1,10 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { inject } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-
-
+import { ThemeService } from '../../services/theme.service';
 import {
   faHome,
   faUser,
@@ -14,7 +12,9 @@ import {
   faEnvelope,
   faBars,
   faTimes,
-  faDownload
+  faDownload,
+  faSun,
+  faMoon
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -30,7 +30,9 @@ import {
 export class HeaderComponent implements OnInit {
   menuOpen = false;
   isScrolled = false;
-  private faLibrary = inject(FaIconLibrary); // ✅ inyección directa
+  
+  public themeService = inject(ThemeService);
+  private faLibrary = inject(FaIconLibrary);
 
   constructor() {
     this.faLibrary.addIcons(
@@ -42,7 +44,9 @@ export class HeaderComponent implements OnInit {
       faEnvelope,
       faBars,
       faTimes,
-      faDownload
+      faDownload,
+      faSun,
+      faMoon
     );
   }
 

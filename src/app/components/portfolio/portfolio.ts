@@ -5,26 +5,24 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
-// Importa los íconos sólidos que usarás para los proyectos (ej. enlaces, tecnologías)
 import {
   faLink,
-  faCode, // Para Vite, Spring Boot, Laravel
+  faCode,
   faLaptopCode,
   faMobileAlt,
-  faDatabase, // Para MySQL, SQL Server
+  faDatabase,
   faCloud,
   faUsers,
-  faPaw, // Para Abrazo Peludo
-  faStore, // Para TecTrade
-  faExchangeAlt, // Para Figuritas Express
-  faBuilding, // Para RRHH
+  faPaw,
+  faStore,
+  faExchangeAlt,
+  faBuilding,
   faTools,
   faChartLine,
   faShieldAlt,
-  faComments // Para NLP
+  faComments
 } from '@fortawesome/free-solid-svg-icons';
 
-// Importa los íconos de marcas
 import {
   faAngular,
   faReact,
@@ -33,15 +31,14 @@ import {
   faHtml5,
   faCss3Alt,
   faJs,
-  faJava, // Para Spring Boot
-  faPhp, // Para Laravel
+  faJava,
+  faPhp,
   faAws,
   faGoogle,
   faDocker,
   faWordpress,
   faGithub
 } from '@fortawesome/free-brands-svg-icons';
-
 
 @Component({
   selector: 'app-portfolio',
@@ -60,98 +57,64 @@ export class PortfolioComponent implements OnInit {
     subtitle: 'Una muestra de mi trabajo y soluciones innovadoras'
   };
 
+  filters = ['Todos', 'Spring Boot', 'React', 'Node.js', 'Flutter'];
+  activeFilter = 'Todos';
+
   projects = [
     {
       id: 'figuritas-express',
-      image: 'https://placehold.co/600x400/FF6347/FFFFFF?text=Figuritas+Express', // Placeholder
+      image: 'https://placehold.co/600x400/FF6347/FFFFFF?text=Figuritas+Express',
       title: 'Figuritas Express',
-      date: 'Enero 2024 - Marzo 2024', // Fecha agregada
+      date: 'Enero 2024 - Marzo 2024',
       description: 'Sistema integral para el comercio seguro de figuritas de anime y coleccionables, optimizando transacciones y gestión de inventario.',
       technologies: [
         { name: 'React', icon: faReact },
-        { name: 'Spring Boot', icon: faJava }, // Usamos faJava para Spring Boot (Java)
+        { name: 'Spring Boot', icon: faJava },
         { name: 'Node.js', icon: faNodeJs },
-        { name: 'Vite', icon: faCode }, // Icono de código para Vite
-        { name: 'MySQL', icon: faDatabase },
-        { name: 'SQL Server', icon: faDatabase }
+        { name: 'AWS', icon: faAws }
       ],
-      liveLink: '#', // Reemplazar con enlace real
-      githubLink: '#' // Reemplazar con enlace real
+      liveLink: '#',
+      githubLink: '#'
     },
     {
       id: 'tectrade-ecommerce',
-      image: 'https://placehold.co/600x400/1a1a2e/FFFFFF?text=TecTrade+Ecommerce', // Placeholder
+      image: 'https://placehold.co/600x400/1a1a2e/FFFFFF?text=TecTrade+Ecommerce',
       title: 'TecTrade: Tienda Online',
-      date: 'Abril 2024 - Junio 2024', // Fecha agregada
+      date: 'Abril 2024 - Junio 2024',
       description: 'Plataforma de comercio electrónico con catálogo de productos, carrito de compras, pasarela de pago y panel de administración.',
       technologies: [
         { name: 'React', icon: faReact },
-        { name: 'Spring Boot', icon: faJava }, // Usamos faJava para Spring Boot (Java)
         { name: 'Node.js', icon: faNodeJs },
-        { name: 'Vite', icon: faCode }, // Icono de código para Vite
-        { name: 'MySQL', icon: faDatabase },
-        { name: 'SQL Server', icon: faDatabase }
+        { name: 'Docker', icon: faDocker },
+        { name: 'JWT', icon: faShieldAlt }
       ],
       liveLink: '#',
       githubLink: '#'
     },
     {
       id: 'abrazo-peludo',
-      image: 'https://placehold.co/600x400/FF8C69/FFFFFF?text=Abrazo+Peludo', // Placeholder
+      image: 'https://placehold.co/600x400/FF8C69/FFFFFF?text=Abrazo+Peludo',
       title: 'Abrazo Peludo',
-      date: 'Julio 2023 - Septiembre 2023', // Fecha agregada
-      description: 'Aplicación para facilitar la adopción de mascotas, conectando refugios con potenciales adoptantes y gestionando procesos.',
+      date: 'Julio 2023 - Septiembre 2023',
+      description: 'Aplicación móvil multiplataforma para facilitar la adopción de mascotas, conectando refugios con adoptantes.',
       technologies: [
-        { name: 'Laravel', icon: faPhp }, // Usamos faPhp para Laravel (PHP)
-        { name: 'MySQL', icon: faDatabase },
-        { name: 'SQL Server', icon: faDatabase },
-        { name: 'Mobile-first', icon: faMobileAlt }
+        { name: 'Flutter', icon: faMobileAlt },
+        { name: 'Node.js', icon: faNodeJs },
+        { name: 'Firebase', icon: faCloud }
       ],
       liveLink: '#',
       githubLink: '#'
     },
     {
       id: 'rrhh-system',
-      image: 'https://placehold.co/600x400/3a3a5a/FFFFFF?text=Sistema+RRHH', // Placeholder
+      image: 'https://placehold.co/600x400/3a3a5a/FFFFFF?text=Sistema+RRHH',
       title: 'Sistema de Gestión RRHH',
-      date: 'Octubre 2023 - Diciembre 2023', // Fecha agregada
+      date: 'Octubre 2023 - Diciembre 2023',
       description: 'Desarrollo de un sistema interno para la oficina de Recursos Humanos, optimizando la gestión de pagos en planillas y administración de personal.',
       technologies: [
-        { name: 'Java', icon: faJava },
         { name: 'Spring Boot', icon: faJava },
-        { name: 'MySQL', icon: faDatabase },
-        { name: 'SQL Server', icon: faDatabase },
-        { name: 'Seguridad', icon: faShieldAlt }
-      ],
-      liveLink: '#',
-      githubLink: '#'
-    },
-    {
-      id: 'iot-dashboard', // Proyecto inventado
-      image: 'https://placehold.co/600x400/FF6347/FFFFFF?text=IoT+Dashboard', // Placeholder
-      title: 'Dashboard de Monitoreo IoT',
-      date: 'Noviembre 2024 - Diciembre 2024', // Fecha inventada
-      description: 'Panel de control en tiempo real para visualizar datos de sensores IoT y gestionar dispositivos conectados.',
-      technologies: [
-        { name: 'React', icon: faReact },
-        { name: 'Node.js', icon: faNodeJs },
-        { name: 'MQTT', icon: faLink },
-        { name: 'Data Viz', icon: faChartLine }
-      ],
-      liveLink: '#',
-      githubLink: '#'
-    },
-    {
-      id: 'ai-chatbot', // Proyecto inventado
-      image: 'https://placehold.co/600x400/1a1a2e/FFFFFF?text=AI+Chatbot', // Placeholder
-      title: 'Asistente Virtual con IA',
-      date: 'Enero 2025 - Febrero 2025', // Fecha inventada
-      description: 'Implementación de un chatbot inteligente para atención al cliente y soporte automatizado, utilizando procesamiento de lenguaje natural.',
-      technologies: [
-        { name: 'Python', icon: faPython },
-        { name: 'TensorFlow', icon: faCode },
-        { name: 'NLP', icon: faComments },
-        { name: 'REST API', icon: faLink }
+        { name: 'Angular', icon: faAngular },
+        { name: 'MySQL', icon: faDatabase }
       ],
       liveLink: '#',
       githubLink: '#'
@@ -161,16 +124,27 @@ export class PortfolioComponent implements OnInit {
   private faLibrary = inject(FaIconLibrary);
 
   constructor() {
-    // Añade todos los íconos que usarás en esta sección a la librería
     this.faLibrary.addIcons(
       faLink, faCode, faLaptopCode, faMobileAlt, faDatabase,
       faCloud, faUsers, faPaw, faStore, faExchangeAlt, faBuilding,
       faTools, faChartLine, faShieldAlt, faComments,
-
       faAngular, faReact, faNodeJs, faPython, faHtml5, faCss3Alt,
       faJs, faJava, faPhp, faAws, faGoogle, faDocker, faWordpress, faGithub
     );
   }
 
   ngOnInit(): void {}
+
+  setFilter(filter: string) {
+    this.activeFilter = filter;
+  }
+
+  get filteredProjects() {
+    if (this.activeFilter === 'Todos') {
+      return this.projects;
+    }
+    return this.projects.filter(project => 
+      project.technologies.some(tech => tech.name === this.activeFilter)
+    );
+  }
 }

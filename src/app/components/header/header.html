@@ -25,6 +25,11 @@
     </nav>
 
     <div class="navbar-actions">
+      <!-- Botón Theme Toggle -->
+      <button class="theme-toggle" (click)="themeService.toggleTheme()" [attr.aria-label]="themeService.isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'">
+        <fa-icon [icon]="themeService.isDark ? ['fas', 'sun'] : ['fas', 'moon']"></fa-icon>
+      </button>
+
       <!-- Botón de Llamada a la Acción (CTA) -->
       <!-- Asegúrate de tener un archivo 'your-cv.pdf' en tu carpeta 'assets' -->
       <a href="/assets/pdf/CV_Edilson_Huaman_2025.pdf" download class="btn-primary">

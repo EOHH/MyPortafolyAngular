@@ -12,16 +12,21 @@
 
         <h3>Logros Destacados</h3>
         <div class="achievements-grid">
-          <div *ngFor="let achievement of achievements" class="achievement-item">
+          @for (achievement of achievements; track achievement.title) {
+          <div class="achievement-item">
             <fa-icon [icon]="achievement.icon" class="achievement-icon"></fa-icon>
             <h4>{{ achievement.title }}</h4>
             <p>{{ achievement.description }}</p>
           </div>
+          } @empty {
+          <p>No hay logros para mostrar.</p>
+          }
         </div>
 
         <h3>Habilidades Técnicas</h3>
         <div class="skills-grid">
-          <div *ngFor="let skill of technicalSkills" class="skill-item">
+          @for (skill of technicalSkills; track skill.name) {
+          <div class="skill-item">
             <fa-icon [icon]="skill.icon" class="skill-icon"></fa-icon>
             <div class="skill-info">
               <span class="skill-name">{{ skill.name }}</span>
@@ -31,14 +36,21 @@
               <span class="skill-level">{{ skill.level }}%</span>
             </div>
           </div>
+          } @empty {
+          <p>No hay habilidades técnicas para mostrar.</p>
+          }
         </div>
 
         <h3>Habilidades Blandas</h3>
         <div class="soft-skills-grid">
-          <div *ngFor="let skill of softSkills" class="soft-skill-item">
+          @for (skill of softSkills; track skill.name) {
+          <div class="soft-skill-item">
             <fa-icon [icon]="skill.icon" class="soft-skill-icon"></fa-icon>
             <span class="soft-skill-name">{{ skill.name }}</span>
           </div>
+          } @empty {
+          <p>No hay habilidades blandas para mostrar.</p>
+          }
         </div>
 
         <!-- Puedes añadir un botón para descargar CV aquí si quieres duplicarlo -->

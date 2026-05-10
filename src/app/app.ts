@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './components/header/header';
 import { HeroComponent } from './components/hero/hero';
 import { AboutComponent } from './components/about/about';
+import { ExperienceComponent } from './components/experience/experience';
 import { ServicesComponent } from './components/services/services';
 import { PortfolioComponent } from './components/portfolio/portfolio';
 import { PricingComponent } from './components/pricing/pricing';
@@ -17,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     HeroComponent,
     AboutComponent,
+    ExperienceComponent,
     ServicesComponent,
     PortfolioComponent,
     PricingComponent,

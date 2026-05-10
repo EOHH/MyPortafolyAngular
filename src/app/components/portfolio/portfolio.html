@@ -1,9 +1,3 @@
-<!--
-  IMPORTANTE: Asegúrate de tener esta línea en tu index.html dentro de <head>:
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  Sin este meta tag, el CSS responsive NO funciona en celulares.
--->
-
 <section id="portfolio" class="portfolio-section">
   <div class="container">
     <div class="section-header">
@@ -11,50 +5,67 @@
       <p>{{ sectionHeader.subtitle }}</p>
     </div>
 
+    <!-- Sistema de Filtros -->
+    <div class="portfolio-filters" aria-label="Filtros de proyectos">
+      @for (filter of filters; track filter) {
+        <button 
+          class="filter-btn" 
+          [class.active]="activeFilter === filter"
+          (click)="setFilter(filter)"
+          [attr.aria-pressed]="activeFilter === filter">
+          {{ filter }}
+        </button>
+      }
+    </div>
+
+    <!-- Grid de Proyectos -->
     <div class="portfolio-grid">
-      <div *ngFor="let project of projects" class="project-card">
+      @for (project of filteredProjects; track project.id) {
+      <div class="project-card">
 
+        <!-- Imagen y Overlay -->
         <div class="project-image-wrapper">
-          <img [src]="project.image" [alt]="project.title" class="project-image">
-
-          <!-- Overlay: visible solo con hover en desktop -->
+          <img [src]="project.image" [alt]="project.title" class="project-image" loading="lazy">
+          
           <div class="project-overlay">
-            <div class="overlay-content">
-              <h3>{{ project.title }}</h3>
-              <p class="overlay-description">{{ project.description }}</p>
-              <div class="overlay-links">
-                <a [href]="project.liveLink" target="_blank" class="overlay-btn" *ngIf="project.liveLink !== '#'">
-                  <fa-icon [icon]="['fas', 'link']"></fa-icon> Demo
-                </a>
-                <a [href]="project.githubLink" target="_blank" class="overlay-btn" *ngIf="project.githubLink !== '#'">
-                  <fa-icon [icon]="['fab', 'github']"></fa-icon> GitHub
-                </a>
-              </div>
+            <div class="overlay-links">
+              @if (project.liveLink !== '#') {
+              <a [href]="project.liveLink" target="_blank" class="overlay-btn" [attr.aria-label]="'Ver Demo de ' + project.title">
+                <fa-icon [icon]="['fas', 'link']"></fa-icon> Demo
+              </a>
+              }
+              @if (project.githubLink !== '#') {
+              <a [href]="project.githubLink" target="_blank" class="overlay-btn" [attr.aria-label]="'Ver Código de ' + project.title">
+                <fa-icon [icon]="['fab', 'github']"></fa-icon> Code
+              </a>
+              }
             </div>
           </div>
         </div>
 
-        <!-- Links visibles en móvil/touch (reemplazan al overlay) -->
-        <div class="mobile-links">
-          <a [href]="project.liveLink" target="_blank" class="mobile-link-btn" *ngIf="project.liveLink !== '#'">
-            <fa-icon [icon]="['fas', 'link']"></fa-icon> Demo
-          </a>
-          <a [href]="project.githubLink" target="_blank" class="mobile-link-btn" *ngIf="project.githubLink !== '#'">
-            <fa-icon [icon]="['fab', 'github']"></fa-icon> GitHub
-          </a>
-        </div>
-
+        <!-- Información -->
         <div class="project-info">
-          <h4>{{ project.title }}</h4>
           <span class="project-date">{{ project.date }}</span>
+          <h4>{{ project.title }}</h4>
+          <p class="project-description">{{ project.description }}</p>
+          
+          <!-- Chips Tecnológicos -->
           <div class="project-technologies">
-            <span *ngFor="let tech of project.technologies" class="tech-tag">
-              <fa-icon [icon]="tech.icon" *ngIf="tech.icon"></fa-icon> {{ tech.name }}
+            @for (tech of project.technologies; track tech.name) {
+            <span class="tech-chip">
+              @if (tech.icon) { <fa-icon [icon]="tech.icon"></fa-icon> } {{ tech.name }}
             </span>
+            }
           </div>
         </div>
 
       </div>
+      } @empty {
+      <!-- Estado Vacío -->
+      <div class="empty-state">
+        <p>No hay proyectos que coincidan con "{{ activeFilter }}".</p>
+      </div>
+      }
     </div>
   </div>
 </section>

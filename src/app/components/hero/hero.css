@@ -1,477 +1,324 @@
 /* src/app/components/hero/hero.css */
 
-/* =========================================
-   BASE — Desktop (layout horizontal)
-   ========================================= */
+:host {
+  --fluid-spacing: clamp(2rem, 5vw, 6rem);
+  --hero-bg: #0f172a; /* Fondo oscuro y profesional */
+  --hero-text: #f8fafc;
+  --hero-muted: #94a3b8;
+  --hero-accent: #FF6347; /* Color principal */
+  --hero-accent-hover: #E64E33;
+}
 
 .hero-section {
-  display: flex;
-  position: relative;
   width: 100%;
-  height: 100vh;
-  background-color: #FF6347;
-  color: #e0e0e0;
-  overflow: hidden;
+  min-height: 100vh;
+  background-color: var(--hero-bg);
+  color: var(--hero-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--fluid-spacing);
   box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
   font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
 }
 
-.hero-content-wrapper {
-  display: flex;
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--fluid-spacing);
+  max-width: 1400px;
   width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 1;
+  align-items: center;
+  z-index: 2;
 }
 
 /* =========================================
-   LADO IZQUIERDO — Texto y botones
+   CONTENIDO IZQUIERDO
    ========================================= */
-
-.hero-left-content {
-  flex: 1;
+.hero-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  text-align: center;
-  position: relative;
-  background-color: #FFFFFF;
-  color: #333333;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-  z-index: 2;
-  height: 100%;
-  min-width: 0;
-  box-sizing: border-box;
 }
 
-.hero-text-block {
-  max-width: 600px;
-  width: 100%;
+.content-wrapper {
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInSlideUp 1s ease-out forwards 0.5s;
-}
-
-@keyframes fadeInSlideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  transform: translateY(30px);
 }
 
 .greeting {
-  font-size: clamp(0.85rem, 2.5vw, 1.2rem);
-  color: #666666;
-  margin-bottom: 8px;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--hero-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.hero-name {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.8rem, 5vw, 3.5rem);
-  font-weight: 800;
-  margin-bottom: 8px;
-  color: #333333;
-  line-height: 1.1;
-  word-break: break-word;
-}
-
-.hero-name span {
-  color: #FF6347;
+.greeting .highlight {
+  color: var(--hero-accent);
+  font-weight: 700;
 }
 
 .hero-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.95rem, 2.5vw, 1.8rem);
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(to right, #ffffff, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+/* =========================================
+   EFECTO MÁQUINA DE ESCRIBIR
+   ========================================= */
+.typewriter-wrapper {
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.specialization {
+  font-size: clamp(0.95rem, 2vw, 1.5rem);
+  color: #a5b4fc;
   font-weight: 600;
-  color: #666666;
-  margin-bottom: 16px;
-  line-height: 1.3;
+  overflow: hidden;
+  border-right: 3px solid var(--hero-accent);
+  white-space: nowrap;
+  margin: 0;
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--hero-accent); }
 }
 
 .hero-tagline {
-  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
   line-height: 1.6;
-  color: #666666;
-  margin-bottom: 32px;
-  max-width: 500px;
+  color: var(--hero-muted);
+  max-width: 600px;
+  margin-bottom: 3rem;
 }
 
 /* =========================================
-   BOTONES
+   BOTONES Y ACCIONES
    ========================================= */
-
 .hero-actions {
   display: flex;
-  gap: 16px;
-  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
-  width: 100%;
 }
 
-.btn-primary,
-.btn-secondary {
-  padding: 0.9rem 2.2rem;
-  border-radius: 8px;
+.btn-primary, .btn-secondary {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
   text-decoration: none;
-  font-weight: 600;
-  font-size: clamp(0.85rem, 1.8vw, 1rem);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  transition: all 0.3s ease;
-  border: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  min-width: 160px;
-  text-align: center;
-  white-space: nowrap;
-  box-sizing: border-box;
 }
 
-.btn-primary {
-  background-color: #FF6347;
-  color: white;
+/* Botón Magnético */
+.magnetic-btn {
+  background-color: var(--hero-accent);
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 30px -10px rgba(255, 99, 71, 0.5);
+  will-change: transform;
 }
 
-.btn-primary:hover {
-  background-color: #E64E33;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+.magnetic-btn:hover {
+  background-color: var(--hero-accent-hover);
+  box-shadow: 0 20px 40px -10px rgba(255, 99, 71, 0.7);
+  /* El transform se maneja desde TypeScript para el efecto hover magnético */
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: #FF6347;
-  border: 2px solid #FF6347;
+  background: transparent;
+  color: var(--hero-text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btn-secondary:hover {
-  background-color: #FF6347;
-  color: white;
+  border-color: var(--hero-text);
+  background: rgba(255, 255, 255, 0.05);
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* =========================================
-   LADO DERECHO — Imagen
+   REDES SOCIALES
    ========================================= */
+.hero-social {
+  display: flex;
+  gap: 1.5rem;
+}
 
-.hero-right-image {
-  flex: 1;
+.hero-social a {
+  color: var(--hero-muted);
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-social a:hover {
+  color: var(--hero-accent);
+  transform: translateY(-5px);
+  background: rgba(255, 99, 71, 0.1);
+  border-color: rgba(255, 99, 71, 0.3);
+}
+
+/* =========================================
+   VISUAL DERECHO - ENMASCARAMIENTO (MASK)
+   ========================================= */
+.hero-visual {
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  padding: 20px;
+  align-items: center;
+}
+
+.visual-wrapper {
   position: relative;
-  background-color: transparent;
-  height: 100%;
-  min-width: 0;
-}
-
-.profile-image {
-  max-width: 80%;
-  max-height: 90%;
-  width: auto;
-  height: auto;
-  object-fit: cover;
-  animation: scaleIn 1s ease-out forwards 0.8s;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 4/5;
+  animation: fadeLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
   opacity: 0;
-  transform: scale(0.8);
+  transform: translateX(50px);
 }
 
-@keyframes scaleIn {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* =========================================
-   SOCIAL SIDEBAR — Desktop (posición absoluta)
-   ========================================= */
-
-.hero-social-sidebar {
+.geometric-shape {
   position: absolute;
-  left: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  z-index: 3;
-  opacity: 0;
-  animation: fadeInSlideRight 1s ease-out forwards 0.8s;
+  top: 5%;
+  right: -5%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--hero-accent), #4f46e5);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  opacity: 0.15;
+  filter: blur(40px);
+  z-index: -1;
+  animation: morph 8s ease-in-out infinite alternate;
 }
 
-/* Social sidebar en móvil: se oculta (se usa .hero-social-mobile) */
-.hero-social-mobile {
-  display: none;
+@keyframes morph {
+  0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+  100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
 }
 
-@keyframes fadeInSlideRight {
-  from {
-    opacity: 0;
-    transform: translateX(-20px) translateY(-50%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) translateY(-50%);
-  }
-}
-
-.hero-social-sidebar a {
-  color: #666666;
-  font-size: 1.6rem;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.hero-social-sidebar a:hover {
-  color: #FF6347;
-  transform: translateX(5px);
+.profile-mask-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Modern CSS Masking con SVG Blob orgánico */
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.5,90,-16.2,89.5,-0.3C89.1,15.6,85.6,31.2,77.5,44.5C69.4,57.8,56.7,68.9,42.3,76.5C27.9,84.1,13.9,88.2,0.1,88.1C-13.8,87.9,-27.6,83.4,-40.5,76C-53.4,68.6,-65.4,58.3,-74.6,45.3C-83.8,32.3,-90.2,16.1,-90.9,-0.4C-91.6,-16.9,-86.6,-33.8,-76.9,-46.8C-67.2,-59.8,-52.8,-68.9,-38.4,-75.8C-24,-82.7,-12,-87.4,1.8,-90.6C15.6,-93.8,31.2,-85.5,44.7,-76.4Z' transform='translate(100 100)' /%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.5,90,-16.2,89.5,-0.3C89.1,15.6,85.6,31.2,77.5,44.5C69.4,57.8,56.7,68.9,42.3,76.5C27.9,84.1,13.9,88.2,0.1,88.1C-13.8,87.9,-27.6,83.4,-40.5,76C-53.4,68.6,-65.4,58.3,-74.6,45.3C-83.8,32.3,-90.2,16.1,-90.9,-0.4C-91.6,-16.9,-86.6,-33.8,-76.9,-46.8C-67.2,-59.8,-52.8,-68.9,-38.4,-75.8C-24,-82.7,-12,-87.4,1.8,-90.6C15.6,-93.8,31.2,-85.5,44.7,-76.4Z' transform='translate(100 100)' /%3E%3C/svg%3E");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  background-color: rgba(255, 99, 71, 0.05); /* Fallback */
 }
 
 /* =========================================
-   TABLET GRANDE — 1024px
+   ANIMACIONES
    ========================================= */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
+@keyframes fadeLeft {
+  0% { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
 @media (max-width: 1024px) {
-  .hero-left-content {
-    clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
-    padding: 1.5rem;
-  }
-
-  .hero-social-sidebar {
-    left: 20px;
-    gap: 20px;
-  }
-
-  .hero-social-sidebar a {
-    font-size: 1.4rem;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    padding: 0.8rem 1.8rem;
-    min-width: 140px;
+  .hero-layout {
+    gap: 2rem;
   }
 }
 
-/* =========================================
-   MÓVIL — hasta 768px
-   Layout vertical: texto arriba, imagen abajo
-   Social icons dentro del flujo normal
-   ========================================= */
-
-@media (max-width: 768px) {
-  /* La sección se convierte en columna scrollable */
-  .hero-section {
-    height: auto;
-    min-height: 100svh; /* svh respeta la barra de navegación del browser */
-    flex-direction: column;
-    background-color: #1a1a2e;
-    overflow-y: auto;
+@media (max-width: 860px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 100px;
   }
-
-  .hero-content-wrapper {
-    flex-direction: column;
-    height: auto;
-    flex: 1;
+  
+  .hero-content {
+    align-items: center;
   }
-
-  /* --- Bloque de texto --- */
-  .hero-left-content {
-    clip-path: none;
-    width: 100%;
-    flex: none; /* no estira, toma su tamaño natural */
-    height: auto;
-    padding: 48px 24px 24px; /* espacio top para navbar */
-    background-color: #1a1a2e;
-    color: #e0e0e0;
-    box-shadow: none;
-  }
-
-  .hero-text-block {
-    max-width: 100%;
-    padding: 0;
-  }
-
-  .greeting {
-    color: #c9d1d9;
-    margin-bottom: 6px;
-  }
-
-  .hero-name {
-    color: #e0e0e0;
-    font-size: clamp(1.6rem, 8vw, 2.4rem);
-    margin-bottom: 8px;
-  }
-
-  .hero-title {
-    color: #c9d1d9;
-    font-size: clamp(0.9rem, 4.5vw, 1.2rem);
-    margin-bottom: 12px;
-  }
-
-  .hero-tagline {
-    color: #c9d1d9;
-    font-size: clamp(0.82rem, 3.8vw, 1rem);
-    margin-bottom: 24px;
-    max-width: 100%;
-  }
-
-  /* --- Botones apilados, ancho completo --- */
+  
   .hero-actions {
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-width: 340px;
+    justify-content: center;
+  }
+  
+  .typewriter-wrapper {
+    margin: 0 auto 1.5rem auto;
+  }
+  
+  .hero-social {
+    justify-content: center;
+  }
+  
+  .hero-visual {
+    order: -1; /* Mover imagen arriba en móvil */
+    margin-bottom: 2rem;
+  }
+  
+  .visual-wrapper {
+    max-width: 320px;
     margin: 0 auto;
   }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    padding: 0.9rem 1rem;
-    font-size: 0.95rem;
-    min-width: unset;
-    white-space: normal; /* permite wrap si el texto es largo */
-  }
-
-  /* --- Íconos sociales en flujo normal (debajo de botones) --- */
-  .hero-social-sidebar {
-    display: none; /* ocultar el absolute */
-  }
-
-  .hero-social-mobile {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 28px;
-    padding: 20px 0 8px;
-    width: 100%;
-  }
-
-  .hero-social-mobile a {
-    color: #e0e0e0;
-    font-size: 1.5rem;
-    transition: color 0.3s ease, transform 0.2s ease;
-  }
-
-  .hero-social-mobile a:active {
-    color: #FF6347;
-    transform: scale(1.15);
-  }
-
-  /* --- Imagen de perfil --- */
-  .hero-right-image {
-    width: 100%;
-    flex: none;
-    height: auto;
-    padding: 16px 24px 24px;
-    background-color: #FF6347;
-    justify-content: center;
-    align-items: flex-end;
-  }
-
-  .profile-image {
-    max-width: 60%;
-    max-height: 320px;
-    height: auto;
-    object-fit: contain;
-  }
 }
-
-/* =========================================
-   MÓVIL PEQUEÑO — hasta 480px
-   ========================================= */
 
 @media (max-width: 480px) {
-  .hero-left-content {
-    padding: 40px 16px 20px;
-  }
-
-  .hero-name {
-    font-size: clamp(1.5rem, 9vw, 2rem);
-  }
-
-  .hero-title {
-    font-size: clamp(0.88rem, 5vw, 1.1rem);
-  }
-
-  .hero-tagline {
-    font-size: 0.85rem;
-    margin-bottom: 20px;
-  }
-
   .hero-actions {
-    max-width: 300px;
-    gap: 10px;
+    flex-direction: column;
+    width: 100%;
   }
-
-  .btn-primary,
-  .btn-secondary {
-    padding: 0.85rem 1rem;
-    font-size: 0.9rem;
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
   }
-
-  .hero-social-mobile {
-    gap: 24px;
-    padding: 16px 0 4px;
-  }
-
-  .hero-social-mobile a {
-    font-size: 1.3rem;
-  }
-
-  .hero-right-image {
-    padding: 12px 16px 20px;
-  }
-
-  .profile-image {
-    max-width: 65%;
-    max-height: 260px;
-  }
-}
-
-/* =========================================
-   MÓVIL MUY PEQUEÑO — hasta 360px
-   ========================================= */
-
-@media (max-width: 360px) {
-  .hero-left-content {
-    padding: 36px 12px 16px;
-  }
-
-  .hero-name {
-    font-size: 1.5rem;
-  }
-
-  .hero-title {
-    font-size: 0.88rem;
-  }
-
-  .hero-tagline {
-    font-size: 0.8rem;
-  }
-
-  .hero-actions {
-    max-width: 260px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    font-size: 0.85rem;
-    padding: 0.8rem 0.8rem;
-  }
-
-  .profile-image {
-    max-width: 70%;
-    max-height: 220px;
+  
+  .specialization {
+    font-size: 1rem;
+    white-space: normal;
+    border-right: none;
+    animation: none; /* Desactivar typewriter en pantallas muy pequeñas para evitar cortes feos */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
   }
 }

@@ -1,57 +1,55 @@
 <section id="hero" class="hero-section">
-  <div class="hero-content-wrapper">
-
-    <!-- Lado izquierdo: texto, botones e íconos sociales en móvil -->
-    <div class="hero-left-content">
-      <div class="hero-text-block">
-        <p class="greeting">¡Hola, soy!</p>
-        <h1 class="hero-name"><span>{{ name }}</span>.</h1>
-        <p class="hero-title">{{ title }}</p>
+  <div class="hero-layout">
+    
+    <!-- Contenido Izquierdo -->
+    <div class="hero-content">
+      <div class="content-wrapper">
+        <p class="greeting">Hola, soy <span class="highlight">{{ name }}</span></p>
+        <h1 class="hero-title">{{ title }}</h1>
+        
+        <!-- Efecto máquina de escribir -->
+        <div class="typewriter-wrapper" aria-label="Especialización">
+          <p class="specialization">{{ specialization }}</p>
+        </div>
+        
         <p class="hero-tagline">{{ tagline }}</p>
 
         <div class="hero-actions">
-          <a href="#portfolio" class="btn-primary" (click)="viewProjects()">
-            Ver Mis Proyectos
+          <!-- Botón primario con hover magnético -->
+          <a href="#portfolio" 
+             class="btn-primary magnetic-btn" 
+             (mousemove)="magneticMove($event)"
+             (mouseleave)="magneticLeave($event)">
+            Ver Proyectos
+            <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon>
           </a>
-          <a href="/assets/pdf/CV_Edilson_Huaman_2025.pdf" download class="btn-secondary" (click)="downloadCV()">
+          
+          <!-- Botón secundario para CV -->
+          <a [href]="cvLink" download class="btn-secondary">
             Descargar CV
+            <fa-icon [icon]="['fas', 'download']"></fa-icon>
           </a>
         </div>
 
-        <!--
-          Íconos sociales para MÓVIL — dentro del flujo normal del DOM.
-          En desktop se ocultan con display:none y se usan los del sidebar.
-        -->
-        <div class="hero-social-mobile">
-          <a *ngFor="let link of socialLinks"
-             [href]="link.url"
+        <div class="hero-social">
+          @for (link of socialLinks; track link.name) {
+          <a [href]="link.url"
              target="_blank"
              [attr.aria-label]="'Visitar mi ' + link.name">
             <fa-icon [icon]="link.icon"></fa-icon>
           </a>
+          }
         </div>
       </div>
     </div>
 
-    <!-- Lado derecho: imagen de perfil -->
-    <div class="hero-right-image">
-      <img [src]="profileImageUrl"
-           alt="Edilson Huaman - Desarrollador de Software"
-           class="profile-image"
-           loading="lazy">
+    <!-- Imagen Derecha -->
+    <div class="hero-visual">
+      <div class="visual-wrapper">
+        <div class="geometric-shape"></div>
+        <img [src]="profileImageUrl" alt="Edilson Huaman - {{ title }}" class="profile-mask-img" loading="lazy">
+      </div>
     </div>
-  </div>
-
-  <!--
-    Íconos sociales para DESKTOP — posición absoluta en el lado izquierdo.
-    En móvil se ocultan con display:none.
-  -->
-  <div class="hero-social-sidebar">
-    <a *ngFor="let link of socialLinks"
-       [href]="link.url"
-       target="_blank"
-       [attr.aria-label]="'Visitar mi ' + link.name">
-      <fa-icon [icon]="link.icon"></fa-icon>
-    </a>
+    
   </div>
 </section>

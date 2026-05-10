@@ -1,0 +1,328 @@
+/* src/app/components/experience/experience.css */
+
+.experience-section {
+  padding: 100px 20px;
+  background-color: #f8fafc;
+  color: #334155;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 4px;
+  background-color: #FF6347;
+  bottom: -10px;
+  left: 20%;
+  border-radius: 2px;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-top: 20px;
+}
+
+/* =========================================
+   TIMELINE CONTAINER
+   ========================================= */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 20px 0;
+}
+
+/* =========================================
+   TIMELINE ITEM
+   ========================================= */
+.timeline-item {
+  display: flex;
+  margin-bottom: 40px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Ocultar la línea en el último elemento */
+.timeline-item:last-child .timeline-line {
+  display: none;
+}
+
+/* =========================================
+   TIMELINE MARKER (Línea e Ícono Central)
+   ========================================= */
+.timeline-marker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.timeline-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 3px solid #FF6347;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF6347;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(255, 99, 71, 0.2);
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-icon-wrapper {
+  background-color: #FF6347;
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 99, 71, 0.4);
+}
+
+.timeline-line {
+  position: absolute;
+  top: 55px; /* Comienza debajo del ícono */
+  bottom: -40px; /* Se extiende hasta el siguiente item */
+  width: 2px;
+  background-color: #cbd5e1;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+/* =========================================
+   TIMELINE CONTENT (Tarjetas)
+   ========================================= */
+.timeline-content {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+
+.timeline-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #ffffff;
+  filter: drop-shadow(-2px 0px 1px rgba(0,0,0,0.03));
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* HEADER TARJETA */
+.card-header {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.period-badge {
+  display: inline-block;
+  background-color: rgba(255, 99, 71, 0.1);
+  color: #FF6347;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.role {
+  font-size: 1.4rem;
+  color: #0f172a;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.company {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* CUERPO TARJETA */
+.description {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.highlights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.highlights-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.check-icon {
+  color: #10b981; /* Verde esmeralda para check */
+  font-size: 1.1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   DISEÑO RESPONSIVO
+   ========================================= */
+
+/* Desktop: Layout Alterno (Izquierda / Derecha) */
+@media (min-width: 992px) {
+  .timeline-item {
+    justify-content: center;
+  }
+  
+  .timeline-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Elementos Impares van a la izquierda */
+  .timeline-item:nth-child(odd) .timeline-content {
+    width: 50%;
+    padding-right: 50px;
+    padding-left: 0;
+    text-align: right;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-card::before {
+    left: auto;
+    right: -10px;
+    border-right: none;
+    border-left: 10px solid #ffffff;
+    filter: drop-shadow(2px 0px 1px rgba(0,0,0,0.03));
+  }
+
+  .timeline-item:nth-child(odd) .company {
+    justify-content: flex-end;
+  }
+  
+  .timeline-item:nth-child(odd) .highlights-list li {
+    flex-direction: row-reverse;
+  }
+
+  /* Elementos Pares van a la derecha */
+  .timeline-item:nth-child(even) .timeline-content {
+    width: 50%;
+    margin-left: 50%;
+    padding-left: 50px;
+  }
+}
+
+/* Tablets y Móviles */
+@media (max-width: 991px) {
+  .timeline-marker {
+    width: 50px;
+  }
+  
+  .timeline-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .timeline-line {
+    top: 45px;
+  }
+  
+  .timeline-content {
+    padding-left: 15px;
+  }
+  
+  .timeline-card {
+    padding: 20px;
+  }
+  
+  .role {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-section {
+    padding: 60px 15px;
+  }
+  
+  .timeline-marker {
+    width: 40px;
+  }
+  
+  .timeline-card {
+    padding: 15px;
+  }
+  
+  .role {
+    font-size: 1.1rem;
+  }
+  
+  .highlights-list li {
+    font-size: 0.9rem;
+  }
+}
