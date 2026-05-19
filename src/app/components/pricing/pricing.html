@@ -1,45 +1,82 @@
 <section id="pricing" class="pricing-section">
   <div class="container">
-    <div class="section-header">
-      <h2>{{ sectionHeader.title }}</h2>
-      <p>{{ sectionHeader.subtitle }}</p>
+    
+    <!-- Header -->
+    <div class="section-header reveal">
+      <div class="pill-tag">{{ sectionHeader.tag }}</div>
+      <h2>{{ sectionHeader.title }} <br> <span class="highlight-gradient">{{ sectionHeader.titleHighlight }}</span></h2>
+      <p class="subtitle">{{ sectionHeader.subtitle }}</p>
     </div>
 
+    <!-- Pricing Cards -->
     <div class="pricing-grid">
       @for (plan of pricingPlans; track plan.name) {
-      <div class="pricing-card" [class.recommended]="plan.isRecommended">
+      <div class="pricing-card reveal" [class.recommended]="plan.isRecommended">
+        
+        @if (plan.isRecommended) {
+          <div class="recommended-badge">
+            <fa-icon [icon]="['fas', 'star']"></fa-icon> {{ plan.badgeText }}
+          </div>
+        }
+        
         <div class="card-header">
-          @if (plan.isRecommended) {
-          <fa-icon [icon]="['fas', 'star']" class="recommended-icon"></fa-icon>
-          }
-          <h3>{{ plan.name }}</h3>
-          <div class="price">
-            <span class="currency">{{ plan.price.includes('Personalizado') ? '' : '$' }}</span>
-            <span class="amount">{{ plan.price }}</span>
-            @if (plan.period) {
-            <span class="period">{{ plan.period }}</span>
-            }
+          <div class="plan-icon">
+            <fa-icon [icon]="plan.icon"></fa-icon>
+          </div>
+          <div class="plan-title-box">
+            <h3>{{ plan.name }}</h3>
+            <p class="plan-description" [innerHTML]="plan.description"></p>
           </div>
         </div>
+
+        <div class="card-price">
+          <span class="period">{{ plan.period }}</span>
+          <div class="amount-box">
+            <span class="currency">$</span>
+            <span class="amount">{{ plan.price }}</span>
+            <span class="currency-type">USD</span>
+          </div>
+        </div>
+
         <div class="card-body">
           <ul class="features-list">
             @for (feature of plan.features; track feature.text) {
             <li>
-              <fa-icon [icon]="feature.icon" [class.available]="feature.available" [class.not-available]="!feature.available"></fa-icon>
+              <fa-icon [icon]="['fas', 'check-circle']" class="check-icon"></fa-icon>
               <span>{{ feature.text }}</span>
             </li>
             }
           </ul>
         </div>
+
         <div class="card-footer">
-          <a [href]="plan.buttonLink" class="btn-primary pricing-cta" [class.btn-recommended]="plan.isRecommended">
-            <fa-icon [icon]="['fas', 'envelope']"></fa-icon> {{ plan.buttonText }}
+          <a href="#contact" class="btn-cta" [class.btn-filled]="plan.isRecommended" [class.btn-outline]="!plan.isRecommended">
+            {{ plan.buttonText }}
+            @if(plan.isRecommended) {
+              <fa-icon [icon]="['fas', 'arrow-right']" class="arrow-icon"></fa-icon>
+            }
           </a>
         </div>
       </div>
-      } @empty {
-      <p>No hay planes disponibles por el momento.</p>
       }
     </div>
+
+    <!-- Value Props Banner -->
+    <div class="value-props-banner reveal">
+      <div class="props-grid">
+        @for (prop of valueProps; track prop.title) {
+        <div class="prop-item">
+          <div class="prop-icon">
+            <fa-icon [icon]="prop.icon"></fa-icon>
+          </div>
+          <div class="prop-text">
+            <h4>{{ prop.title }}</h4>
+            <p>{{ prop.desc }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
   </div>
 </section>

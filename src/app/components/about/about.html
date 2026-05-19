@@ -1,77 +1,154 @@
 <section id="about" class="about-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>{{ aboutMe.title }}</h2>
-      <p>{{ aboutMe.subtitle }}</p>
-    </div>
-
-    <div class="about-content-wrapper">
-      <div class="about-text-content">
-        <p class="intro-paragraph">{{ aboutMe.introduction }}</p>
-        <p class="philosophy-paragraph">{{ aboutMe.philosophy }}</p>
-
-        <h3>Logros Destacados</h3>
-        <div class="achievements-grid">
-          @for (achievement of achievements; track achievement.title) {
-          <div class="achievement-item">
-            <fa-icon [icon]="achievement.icon" class="achievement-icon"></fa-icon>
-            <h4>{{ achievement.title }}</h4>
-            <p>{{ achievement.description }}</p>
-          </div>
-          } @empty {
-          <p>No hay logros para mostrar.</p>
-          }
+  <div class="about-bento">
+    
+    <!-- Top Row -->
+    <div class="about-top-row">
+      <!-- Left: Profile Col -->
+      <div class="profile-col">
+        <div class="profile-card">
+           <div class="profile-glow-ring"></div>
+           <!-- Usando la foto proporcionada -->
+           <img src="assets/img/about-profile.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Edilson+Huaman&size=500&background=0D1117&color=fff'" class="profile-img">
+           <div class="availability-badge">
+              <span class="dot-green"></span>
+              <div class="badge-text">
+                 <strong>Disponible para proyectos</strong>
+                 <span>Freelance • Remoto • Tiempo completo</span>
+              </div>
+           </div>
         </div>
 
-        <h3>Habilidades Técnicas</h3>
-        <div class="skills-grid">
-          @for (skill of technicalSkills; track skill.name) {
-          <div class="skill-item">
-            <fa-icon [icon]="skill.icon" class="skill-icon"></fa-icon>
-            <div class="skill-info">
-              <span class="skill-name">{{ skill.name }}</span>
-              <div class="progress-bar-container">
-                <div class="progress-bar" [style.width.%]="skill.level"></div>
-              </div>
-              <span class="skill-level">{{ skill.level }}%</span>
+        <!-- Extra Info (Location, Languages, Connect) -->
+        <div class="profile-extras">
+           <div class="extra-card bento-card">
+             <div class="extra-icon cyan"><fa-icon [icon]="['fas', 'map-marker-alt']"></fa-icon></div>
+             <div class="extra-info">
+               <span>Ubicación base</span>
+               <strong>San Martín de Porres, Lima, Perú</strong>
+             </div>
+           </div>
+
+           <div class="extra-card bento-card">
+             <div class="extra-icon purple"><fa-icon [icon]="['fas', 'language']"></fa-icon></div>
+             <div class="extra-info">
+               <span>Idiomas</span>
+               <strong>Español & Inglés</strong>
+             </div>
+           </div>
+
+           <div class="social-bento">
+             <a href="https://github.com/EOHH" target="_blank" class="social-btn"><fa-icon [icon]="['fab', 'github']"></fa-icon></a>
+             <a href="https://linkedin.com/in/edilson-oswaldo-huaman-huanca-a25600363" target="_blank" class="social-btn"><fa-icon [icon]="['fab', 'linkedin-in']"></fa-icon></a>
+             <a href="mailto:edilsonhuaman44@gmail.com" class="social-btn"><fa-icon [icon]="['fas', 'envelope']"></fa-icon></a>
+           </div>
+        </div>
+      </div>
+      
+      <!-- Right: Main Intro & Focus Cards -->
+      <div class="intro-card">
+         <div class="tag-badge"><fa-icon [icon]="['fas', 'user']"></fa-icon> SOBRE MÍ</div>
+         <h2 class="intro-title">
+           Apasionado por construir<br>
+           <span class="gradient-text-purple">soluciones que generan impacto real.</span>
+         </h2>
+         <p class="intro-desc">
+           Soy desarrollador Full Stack con más de 3 años de experiencia construyendo aplicaciones escalables, seguras y de alto rendimiento. Me especializo en backend con Java (Spring Boot) y también tengo sólida experiencia en tecnologías modernas de frontend y mobile.<br><br>
+           Me encanta transformar ideas en productos digitales que mejoran la vida de las personas.
+         </p>
+         
+         <!-- Focus Cards -->
+         <div class="focus-cards">
+            @for (focus of focusAreas; track focus.title) {
+            <div class="focus-item">
+               <div class="focus-icon"><fa-icon [icon]="focus.icon"></fa-icon></div>
+               <h5>{{ focus.title }}</h5>
+               <p>{{ focus.description }}</p>
+            </div>
+            }
+         </div>
+      </div>
+    </div>
+
+    <!-- Middle Row -->
+    <div class="about-middle-row">
+      <!-- Left: Timeline -->
+      <div class="timeline-card bento-card">
+        <div class="bento-title">Mi camino como desarrollador</div>
+        <div class="timeline">
+          @for (item of timeline; track item.year) {
+          <div class="timeline-item">
+            <div class="timeline-icon icon-{{ item.color }}"><fa-icon [icon]="item.icon"></fa-icon></div>
+            <div class="timeline-content">
+              <h4>{{ item.year }}</h4>
+              <h5>{{ item.title }}</h5>
+              <p>{{ item.desc }}</p>
             </div>
           </div>
-          } @empty {
-          <p>No hay habilidades técnicas para mostrar.</p>
           }
         </div>
-
-        <h3>Habilidades Blandas</h3>
-        <div class="soft-skills-grid">
-          @for (skill of softSkills; track skill.name) {
-          <div class="soft-skill-item">
-            <fa-icon [icon]="skill.icon" class="soft-skill-icon"></fa-icon>
-            <span class="soft-skill-name">{{ skill.name }}</span>
-          </div>
-          } @empty {
-          <p>No hay habilidades blandas para mostrar.</p>
-          }
-        </div>
-
-        <!-- Puedes añadir un botón para descargar CV aquí si quieres duplicarlo -->
-        <!-- <a href="/assets/pdf/CV_Edilson_Huaman_2025.pdf" download class="btn-primary about-cta">
-          <fa-icon [icon]="['fas', 'download']"></fa-icon> Descargar CV Completo
-        </a> -->
       </div>
 
-      <div class="about-image-content">
-        <img [src]="aboutMe.profileImage" alt="Edilson Huaman - Perfil" class="about-profile-image">
-        <!-- Puedes añadir aquí un pequeño bloque de "Datos rápidos" si lo deseas -->
-        <div class="quick-facts">
-          <h4>Datos Rápidos</h4>
-          <ul>
-            <li><strong>Nombre:</strong> Edilson Huaman</li>
-            <li><strong>Ubicación:</strong> Challabamba, Cusco, Perú</li>
-            <li><strong>Especialidad:</strong> Desarrollo Full-Stack</li>
-            <li><strong>Educación:</strong> TECSUP (Diseño y Desarrollo de Software)</li>
-          </ul>
+      <!-- Middle: Tech Stack -->
+      <div class="tech-card bento-card">
+        <div class="bento-title">Tecnologías principales</div>
+        
+        <div class="tech-category">
+          <h4>Backend</h4>
+          <div class="tech-pills">
+            @for (tech of techBackend; track tech.name) {
+            <div class="tech-pill">
+              <fa-icon [icon]="tech.icon" [style.color]="tech.color"></fa-icon> {{ tech.name }}
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="tech-category">
+          <h4>Frontend</h4>
+          <div class="tech-pills">
+            @for (tech of techFrontend; track tech.name) {
+            <div class="tech-pill">
+              <fa-icon [icon]="tech.icon" [style.color]="tech.color"></fa-icon> {{ tech.name }}
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="tech-category">
+          <h4>Mobile & Others</h4>
+          <div class="tech-pills">
+            @for (tech of techMobile; track tech.name) {
+            <div class="tech-pill">
+              <fa-icon [icon]="tech.icon" [style.color]="tech.color"></fa-icon> {{ tech.name }}
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Stats -->
+      <div class="stats-card bento-card">
+        <div class="bento-title">Algunos números</div>
+        <div class="stats-grid">
+          @for (stat of stats; track stat.label) {
+          <div class="stat-item">
+            <div class="stat-icon icon-{{ stat.color }}"><fa-icon [icon]="stat.icon"></fa-icon></div>
+            <div class="stat-info">
+              <h4>{{ stat.value }}</h4>
+              <p>{{ stat.label }}</p>
+            </div>
+          </div>
+          }
         </div>
       </div>
     </div>
+
+    <!-- Bottom Row: Quote -->
+    <div class="quote-card bento-card">
+      <fa-icon [icon]="['fas', 'quote-left']"></fa-icon>
+      <p>Creo firmemente que la <span class="highlight">tecnología</span> puede cambiar el mundo, y mi misión es ser parte de ese <span class="highlight-purple">cambio</span>.</p>
+      <span class="signature">Edilson H.</span>
+    </div>
+
   </div>
 </section>

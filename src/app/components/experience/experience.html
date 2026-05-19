@@ -1,47 +1,135 @@
 <section id="experience" class="experience-section">
   <div class="container">
-    <div class="section-header">
-      <h2>Experiencia Profesional</h2>
-      <p>Mi trayectoria y evolución como desarrollador de software</p>
+    
+    <!-- Top Header -->
+    <div class="exp-header-wrapper">
+      <div class="section-tag">
+        <fa-icon [icon]="['fas', 'briefcase']"></fa-icon> EXPERIENCIA
+      </div>
+      <h2 class="exp-title">
+        Experiencia que genera<br>
+        <span class="gradient-text-cyan">impacto real</span>
+      </h2>
+      <p class="exp-desc">
+        Más de 3 años construyendo soluciones escalables, eficientes y centradas en el usuario.
+      </p>
     </div>
 
-    <div class="timeline-container">
-      @for (exp of experiences; track exp.id) {
-        <div class="timeline-item" #timelineItem>
-          <!-- Línea y punto central -->
-          <div class="timeline-marker">
-            <div class="timeline-icon-wrapper">
-              <fa-icon [icon]="exp.icon"></fa-icon>
-            </div>
-            <div class="timeline-line"></div>
-          </div>
+    <div class="exp-bento-layout">
+      <!-- Left: Timeline -->
+      <div class="exp-timeline-col">
+        <div class="timeline-line-bg"></div>
 
-          <!-- Contenido de la tarjeta -->
-          <div class="timeline-content">
-            <div class="timeline-card">
-              <div class="card-header">
-                <span class="period-badge">{{ exp.period }}</span>
-                <h3 class="role">{{ exp.role }}</h3>
-                <h4 class="company">
-                  <fa-icon [icon]="['fas', 'briefcase']"></fa-icon> {{ exp.company }}
-                </h4>
-              </div>
-              
-              <div class="card-body">
-                <p class="description">{{ exp.description }}</p>
-                <ul class="highlights-list">
-                  @for (highlight of exp.highlights; track highlight) {
-                    <li>
-                      <fa-icon [icon]="['fas', 'check-circle']" class="check-icon"></fa-icon>
-                      <span>{{ highlight }}</span>
-                    </li>
-                  }
-                </ul>
+        @for (exp of experiences; track exp.id) {
+          <div class="timeline-row">
+            <!-- Left Info (Date & Duration) -->
+            <div class="timeline-date-info">
+              <span class="period {{ exp.colorClass }}">{{ exp.period }}</span>
+              <span class="duration">{{ exp.duration }}</span>
+            </div>
+
+            <!-- The dot -->
+            <div class="timeline-dot {{ exp.colorClass }}"></div>
+
+            <!-- The Card -->
+            <div class="exp-card bento-card {{ exp.colorClass }}">
+              <div class="exp-card-inner">
+                
+                <!-- Left side of the card (Company & Info) -->
+                <div class="exp-card-main">
+                  <div class="company-logo-box">
+                    <span class="logo-text">{{ exp.companyIconText }}</span>
+                    <span class="logo-name">{{ exp.company }}</span>
+                  </div>
+                  
+                  <div class="exp-role-info">
+                    <h3 class="role {{ exp.colorClass }}">{{ exp.role }}</h3>
+                    <h4 class="company-location">
+                      {{ exp.company }} <span class="separator">|</span> Remoto/Híbrido
+                    </h4>
+                    <p class="desc">{{ exp.description }}</p>
+                    
+                    <div class="tech-pills">
+                      @for (tech of exp.technologies; track tech.name) {
+                        <span class="tech-pill">
+                           {{ tech.name }}
+                        </span>
+                      }
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right side of the card (Logros) -->
+                <div class="exp-card-achievements">
+                  <h5 class="achievements-title">
+                    <fa-icon [icon]="['fas', 'star']" class="star-icon"></fa-icon> Logros principales
+                  </h5>
+                  <ul class="achievements-list">
+                    @for (item of exp.impact; track item) {
+                      <li>
+                        <fa-icon [icon]="['fas', 'check-circle']" class="check-icon"></fa-icon>
+                        <span>{{ item }}</span>
+                      </li>
+                    }
+                  </ul>
+                </div>
               </div>
             </div>
+          </div>
+        }
+      </div>
+
+      <!-- Right: Sidebar -->
+      <div class="exp-sidebar-col">
+        <!-- Resumen profesional -->
+        <div class="sidebar-card bento-card">
+          <h3 class="sidebar-title">
+            <fa-icon [icon]="['fas', 'user']"></fa-icon> Resumen profesional <span class="dot-cyan"></span>
+          </h3>
+          <div class="stats-grid">
+            @for (stat of stats; track stat.label) {
+              <div class="stat-mini-card">
+                <div class="stat-icon"><fa-icon [icon]="stat.icon"></fa-icon></div>
+                <div class="stat-info">
+                  <strong>{{ stat.value }}</strong>
+                  <span>{{ stat.label }}</span>
+                </div>
+              </div>
+            }
           </div>
         </div>
-      }
+
+        <!-- Tecnologías más utilizadas -->
+        <div class="sidebar-card bento-card">
+          <h3 class="sidebar-title">
+            <fa-icon [icon]="['fas', 'code']"></fa-icon> Tecnologías más utilizadas <span class="dot-purple"></span>
+          </h3>
+          <div class="top-tech-grid">
+            @for (tech of topTechs; track tech) {
+              <div class="top-tech-box" [style.color]="tech.color">
+                @if (tech.icon) {
+                  <fa-icon [icon]="tech.icon"></fa-icon>
+                } @else {
+                  <span class="text-icon">{{ tech.textIcon }}</span>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Always Learning -->
+        <div class="sidebar-card bento-card learning-card">
+          <div class="learning-icon">
+            <fa-icon [icon]="['fas', 'trophy']"></fa-icon>
+          </div>
+          <div class="learning-content">
+            <h4>Siempre aprendiendo,<br>siempre construyendo.</h4>
+            <p>Cada proyecto es una nueva oportunidad para crear algo increíble.</p>
+            <a href="#portfolio" class="btn-learning">Ver mis proyectos <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon></a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>

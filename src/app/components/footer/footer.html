@@ -1,43 +1,100 @@
 <footer class="footer">
-  <div class="footer-top-section">
-    <p class="follow-text">¡SÍGUEME!</p>
-    <p class="handle-text">&#64;GOTTIDEV</p>
+  <div class="container footer-layout">
+    
+    <!-- Main Footer Container -->
+    <div class="footer-main-container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Brand -->
+        <div class="footer-brand">
+          <h2 class="footer-logo">
+            <fa-icon [icon]="['fas', 'code']"></fa-icon> {{ developerInfo.name }}<span>.{{ developerInfo.lastName }}</span>
+          </h2>
+          <p class="footer-desc">Desarrollador Full Stack apasionado por construir aplicaciones escalables, seguras y de alto rendimiento que generan <span class="highlight-cyan">impacto real</span> en los negocios.</p>
+          
+          <div class="availability-badge">
+            <span class="dot"></span> Disponible para nuevos proyectos
+          </div>
+          
+          <div class="social-icons">
+            @for (link of socialLinks; track link.name) {
+              <a [href]="link.url" target="_blank" [attr.aria-label]="link.name">
+                <fa-icon [icon]="link.icon"></fa-icon>
+              </a>
+            }
+          </div>
+        </div>
+
+        <!-- Column 2: Nav -->
+        <div class="footer-nav">
+          <h3 class="footer-title">NAVEGACIÓN <span class="title-dot"></span></h3>
+          <ul class="footer-links">
+            @for (link of navLinks; track link.name) {
+              <li>
+                <a [href]="link.url">
+                  <div class="link-icon"><fa-icon [icon]="link.icon"></fa-icon></div>
+                  {{ link.name }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="footer-services">
+          <h3 class="footer-title">SERVICIOS <span class="title-dot"></span></h3>
+          <ul class="footer-links">
+            @for (service of serviceLinks; track service.name) {
+              <li>
+                <div class="service-item">
+                  <div class="link-icon"><fa-icon [icon]="service.icon"></fa-icon></div>
+                  {{ service.name }}
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-contact">
+          <h3 class="footer-title">CONTACTO <span class="title-dot"></span></h3>
+          <ul class="contact-list">
+            @for (info of contactInfo; track info.text) {
+              <li>
+                <div class="contact-icon"><fa-icon [icon]="info.icon"></fa-icon></div>
+                {{ info.text }}
+              </li>
+            }
+          </ul>
+          
+          <div class="footer-quote-box">
+            <fa-icon [icon]="['fas', 'quote-left']" class="quote-mark"></fa-icon>
+            <p>Código limpio, soluciones escalables y <span class="highlight-cyan">propósito claro.</span></p>
+            <fa-icon [icon]="['fas', 'quote-right']" class="quote-mark right"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <!-- Bottom Footer -->
+    <div class="footer-bottom">
+      <div class="bottom-left">
+        <p>&copy; {{ currentYear }} <span class="highlight-cyan">{{ developerInfo.name }}.{{ developerInfo.lastName }}</span><br>
+        <span class="copyright-sub">Todos los derechos reservados.</span></p>
+      </div>
+      
+      <div class="bottom-center">
+        <div class="logo-circle"><fa-icon [icon]="['fas', 'code']"></fa-icon></div>
+        <p>Construyendo soluciones<br>con <span class="highlight-cyan">código limpio</span> y buenas prácticas.</p>
+        <div class="decorative-wave"></div>
+      </div>
+      
+      <div class="bottom-right">
+        <!-- Espacio reservado para balance visual en desktop -->
+      </div>
+    </div>
   </div>
 
-  <div class="gallery-section">
-    @for (image of galleryImages; track image.src) {
-    <a [href]="image.link" target="_blank" class="gallery-item" aria-label="Ver en Instagram">
-      <img [src]="image.src" [alt]="image.alt">
-    </a>
-    }
-  </div>
-
-  <div class="contact-links-section">
-    @for (item of contactInfo; track item.text) {
-    <a [href]="item.link" class="contact-link" [attr.aria-label]="item.type === 'email' ? 'Enviar correo a ' + item.text : 'Ver ' + item.type + ' de ' + item.text">
-      <fa-icon [icon]="item.icon"></fa-icon>
-      <span class="contact-text">{{ item.text }}</span>
-    </a>
-    }
-  </div>
-
-  <hr class="footer-divider">
-
-  <div class="footer-bottom-section">
-    <p class="copyright-info">
-      &copy; {{ currentYear }} GOTTIDEV <br>
-      DESARROLLADOR DE SOFTWARE <br>
-      Diseñado y desarrollado por GottiDev <br>
-      Aviso Legal | Política de privacidad
-    </p>
-  </div>
-
-  <button
-    class="back-to-top"
-    [class.show]="isScrolled"
-    (click)="scrollToTop()"
-    aria-label="Volver arriba"
-  >
-    <fa-icon [icon]="['fas', 'arrow-up']"></fa-icon>
-  </button>
 </footer>

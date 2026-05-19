@@ -1,78 +1,152 @@
 <section id="contact" class="contact-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>{{ sectionHeader.title }}</h2>
-      <p>{{ sectionHeader.subtitle }}</p>
-    </div>
-
-    <div class="contact-content-wrapper">
-      <!-- Columna de Información de Contacto -->
-      <div class="contact-info">
-        <div class="info-item">
-          <fa-icon [icon]="['fas', 'map-marker-alt']" class="info-icon"></fa-icon>
-          <div class="info-details">
-            <h4>Ubicación:</h4>
-            <p>{{ contactInfo.location }}</p>
-          </div>
-        </div>
-        <div class="info-item">
-          <fa-icon [icon]="['fas', 'phone']" class="info-icon"></fa-icon>
-          <div class="info-details">
-            <h4>Teléfono:</h4>
-            <p><a [href]="'tel:' + contactInfo.phone">{{ contactInfo.phone }}</a></p>
-          </div>
-        </div>
-        <div class="info-item">
-          <fa-icon [icon]="['fas', 'envelope']" class="info-icon"></fa-icon>
-          <div class="info-details">
-            <h4>Email:</h4>
-            <p><a [href]="'mailto:' + contactInfo.email">{{ contactInfo.email }}</a></p>
-          </div>
-        </div>
-
-        <div class="social-links-contact">
-          <h4>Mis Redes Sociales:</h4>
-          <div class="social-icons">
-            @for (link of socialLinks; track link.name) {
-            <a [href]="link.url" target="_blank" [attr.aria-label]="'Visitar mi ' + link.name">
-              <fa-icon [icon]="link.icon"></fa-icon>
-            </a>
-            }
-          </div>
-        </div>
+  <div class="container contact-layout">
+    <!-- Columna Izquierda -->
+    <div class="contact-left">
+      <div class="badge-talk">
+        <fa-icon [icon]="['fas', 'comment-dots']"></fa-icon>
+        <span>HABLEMOS</span>
       </div>
 
-      <!-- Columna del Formulario de Contacto -->
-      <div class="contact-form-wrapper">
-        <form (ngSubmit)="onSubmit()" #contactFormRef="ngForm" class="contact-form">
-          <div class="form-group">
-            <label for="name">Tu Nombre</label>
-            <div class="input-with-icon">
-              <fa-icon [icon]="['fas', 'user']"></fa-icon>
-              <input type="text" id="name" name="name" [(ngModel)]="contactForm.name" required placeholder="Ej: Edilson Huaman">
+      <h2 class="contact-title">
+        ¿Tienes un proyecto<br>en mente?<br>
+        <span class="highlight-cyan">Hablemos.</span>
+      </h2>
+
+      <p class="contact-subtitle">
+        Estoy disponible para trabajar en proyectos desafiantes<br class="desktop-only">y ayudar a convertir ideas en <span class="highlight-cyan">soluciones reales.</span>
+      </p>
+
+      <div class="contact-info-list">
+        <!-- Email -->
+        <a href="mailto:edilsonhuaman44@gmail.com" class="info-item">
+          <div class="info-icon"><fa-icon [icon]="['fas', 'envelope']"></fa-icon></div>
+          <div class="info-text">
+            <h4>Email</h4>
+            <p>edilsonhuaman44&#64;gmail.com</p>
+          </div>
+          <fa-icon [icon]="['fas', 'arrow-right']" class="arrow-icon"></fa-icon>
+        </a>
+
+        <!-- Teléfono -->
+        <a href="tel:+51975991831" class="info-item">
+          <div class="info-icon"><fa-icon [icon]="['fas', 'phone']"></fa-icon></div>
+          <div class="info-text">
+            <h4>Teléfono</h4>
+            <p>+51 975 991 831</p>
+          </div>
+          <fa-icon [icon]="['fas', 'arrow-right']" class="arrow-icon"></fa-icon>
+        </a>
+
+        <!-- Ubicación -->
+        <div class="info-item">
+          <div class="info-icon"><fa-icon [icon]="['fas', 'map-marker-alt']"></fa-icon></div>
+          <div class="info-text">
+            <h4>Ubicación</h4>
+            <p>San Martin de Porres, Lima, Perú</p>
+          </div>
+          <fa-icon [icon]="['fas', 'arrow-right']" class="arrow-icon"></fa-icon>
+        </div>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/in/edilson-oswaldo-huaman-huanca-a25600363" target="_blank" class="info-item">
+          <div class="info-icon"><fa-icon [icon]="['fab', 'linkedin-in']"></fa-icon></div>
+          <div class="info-text">
+            <h4>LinkedIn</h4>
+            <p>linkedin.com/in/edilson-oswaldo-huaman-huanca-a25600363</p>
+          </div>
+          <fa-icon [icon]="['fas', 'arrow-right']" class="arrow-icon"></fa-icon>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/EOHH" target="_blank" class="info-item">
+          <div class="info-icon"><fa-icon [icon]="['fab', 'github']"></fa-icon></div>
+          <div class="info-text">
+            <h4>GitHub</h4>
+            <p>github.com/EOHH</p>
+          </div>
+          <fa-icon [icon]="['fas', 'arrow-right']" class="arrow-icon"></fa-icon>
+        </a>
+      </div>
+    </div>
+
+    <!-- Medio: Quote Card y 3D Plane -->
+    <div class="contact-middle">
+      <div class="floating-plane">
+        <fa-icon [icon]="['fas', 'paper-plane']" class="plane-3d"></fa-icon>
+      </div>
+
+      <div class="quote-card">
+        <fa-icon [icon]="['fas', 'quote-left']" class="quote-icon"></fa-icon>
+        <p class="quote-text">
+          Me apasiona<br>crear soluciones<br>que generen <span class="highlight-cyan">impacto<br>real</span> en los negocios.
+        </p>
+        <div class="signature">
+          Edilson H.
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Formulario -->
+    <div class="contact-right">
+      <div class="form-container">
+        <div class="form-header">
+          <div class="header-icon">
+            <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon>
+          </div>
+          <div class="header-text">
+            <h3>Envíame un mensaje</h3>
+            <p>Completa el formulario y te responderé pronto. <span class="dot"></span></p>
+          </div>
+        </div>
+
+        <form (ngSubmit)="onSubmit(contactFormRef)" #contactFormRef="ngForm" class="custom-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <div class="input-wrapper">
+                <fa-icon [icon]="['fas', 'user']" class="input-icon"></fa-icon>
+                <input type="text" id="name" name="name" [(ngModel)]="contactForm.name" required placeholder="Tu nombre completo" autocomplete="name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <div class="input-wrapper">
+                <fa-icon [icon]="['fas', 'envelope']" class="input-icon"></fa-icon>
+                <input type="email" id="email" name="email" [(ngModel)]="contactForm.email" required placeholder="tu@email.com" autocomplete="email">
+              </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="email">Tu Email</label>
-            <div class="input-with-icon">
-              <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
-              <input type="email" id="email" name="email" [(ngModel)]="contactForm.email" required email placeholder="Ej: tu.email@example.com">
-            </div>
-          </div>
+
           <div class="form-group">
             <label for="subject">Asunto</label>
-            <div class="input-with-icon">
-              <fa-icon [icon]="['fas', 'tag']"></fa-icon>
-              <input type="text" id="subject" name="subject" [(ngModel)]="contactForm.subject" required placeholder="Ej: Consulta de proyecto web">
+            <div class="input-wrapper">
+              <fa-icon [icon]="['fas', 'file-alt']" class="input-icon"></fa-icon>
+              <input type="text" id="subject" name="subject" [(ngModel)]="contactForm.subject" required placeholder="¿De qué se trata tu proyecto?">
             </div>
           </div>
+
           <div class="form-group">
             <label for="message">Mensaje</label>
-            <textarea id="message" name="message" [(ngModel)]="contactForm.message" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
+            <div class="input-wrapper textarea-wrapper">
+              <fa-icon [icon]="['fas', 'pen']" class="input-icon top-icon"></fa-icon>
+              <textarea id="message" name="message" [(ngModel)]="contactForm.message" rows="4" required placeholder="Cuéntame más sobre tu proyecto, idea o requerimiento..."></textarea>
+            </div>
           </div>
-          <button type="submit" class="btn-primary contact-submit-btn">
-            <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> Enviar Mensaje
+
+          <button type="submit" class="btn-submit" [disabled]="contactFormRef.invalid || isSubmitting">
+            @if (isSubmitting) {
+              <span class="spinner"></span>
+            } @else if (isSuccess) {
+              <fa-icon [icon]="['fas', 'check']"></fa-icon> ¡Enviado!
+            } @else {
+              <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> Enviar mensaje
+            }
           </button>
+
+          <div class="form-footer">
+            <fa-icon [icon]="['fas', 'lock']"></fa-icon>
+            <span>Tus datos están seguros. Nunca comparto tu información.</span>
+          </div>
         </form>
       </div>
     </div>

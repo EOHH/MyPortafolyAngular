@@ -1,55 +1,128 @@
 <section id="hero" class="hero-section">
+  <!-- Fondo Decorativo -->
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+
   <div class="hero-layout">
     
     <!-- Contenido Izquierdo -->
     <div class="hero-content">
       <div class="content-wrapper">
-        <p class="greeting">Hola, soy <span class="highlight">{{ name }}</span></p>
-        <h1 class="hero-title">{{ title }}</h1>
         
-        <!-- Efecto máquina de escribir -->
-        <div class="typewriter-wrapper" aria-label="Especialización">
-          <p class="specialization">{{ specialization }}</p>
+        <!-- Status Badge -->
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span class="status-text">DISPONIBLE PARA NUEVOS PROYECTOS</span>
+        </div>
+
+        <div class="hero-greeting">Hola, soy</div>
+        <h1 class="hero-title">
+          <span class="name-animation">Edilson Huaman</span><br/> 
+          <span class="role-text">Desarrollador <span class="gradient-text-2">Full Stack</span></span>
+        </h1>
+        
+        <p class="hero-description">
+          Creo soluciones de alto <span class="highlight-text">performance</span> enfocadas en <span class="highlight-text">escalabilidad</span> e <span class="highlight-text">impacto real</span>.
+        </p>
+
+        <!-- Tech Stack Pills -->
+        <div class="tech-pills">
+          @for (tech of techIcons; track tech.name) {
+            <span class="tech-pill">
+              <fa-icon [icon]="tech.icon"></fa-icon> {{ tech.name }}
+            </span>
+          }
         </div>
         
-        <p class="hero-tagline">{{ tagline }}</p>
+        <!-- Metrics (Tarjetas) -->
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-header metric-orange">
+              <fa-icon [icon]="['fas', 'arrow-up']"></fa-icon> 
+              <span class="metric-value">+40%</span>
+            </div>
+            <p class="metric-label">Mejora en rendimiento</p>
+          </div>
 
+          <div class="metric-card">
+            <div class="metric-header metric-purple">
+              <fa-icon [icon]="['fas', 'arrow-up']"></fa-icon> 
+              <span class="metric-value">+20%</span>
+            </div>
+            <p class="metric-label">Retención de usuarios</p>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header metric-cyan">
+              <fa-icon [icon]="['fas', 'arrow-up']"></fa-icon> 
+              <span class="metric-value">100%</span>
+            </div>
+            <p class="metric-label">Apps en producción</p>
+          </div>
+        </div>
+
+        <!-- Acciones -->
         <div class="hero-actions">
-          <!-- Botón primario con hover magnético -->
-          <a href="#portfolio" 
-             class="btn-primary magnetic-btn" 
-             (mousemove)="magneticMove($event)"
-             (mouseleave)="magneticLeave($event)">
+          <a href="#portfolio" class="btn-primary-premium">
             Ver Proyectos
             <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon>
           </a>
           
-          <!-- Botón secundario para CV -->
-          <a [href]="cvLink" download class="btn-secondary">
+          <a [href]="cvLink" download class="btn-secondary-glass">
             Descargar CV
             <fa-icon [icon]="['fas', 'download']"></fa-icon>
           </a>
+
+          <a [href]="githubLink" target="_blank" class="btn-tertiary-glow">
+            <fa-icon [icon]="['fab', 'github']"></fa-icon>
+            Ver en GitHub
+          </a>
         </div>
 
-        <div class="hero-social">
-          @for (link of socialLinks; track link.name) {
-          <a [href]="link.url"
-             target="_blank"
-             [attr.aria-label]="'Visitar mi ' + link.name">
-            <fa-icon [icon]="link.icon"></fa-icon>
-          </a>
-          }
-        </div>
       </div>
     </div>
 
-    <!-- Imagen Derecha -->
+    <!-- Imagen Derecha y Elementos Flotantes -->
     <div class="hero-visual">
       <div class="visual-wrapper">
-        <div class="geometric-shape"></div>
-        <img [src]="profileImageUrl" alt="Edilson Huaman - {{ title }}" class="profile-mask-img" loading="lazy">
+        <!-- Aro de luz trasero -->
+        <div class="visual-ring"></div>
+        
+        <!-- Imagen central (simulada si no hay) -->
+        <div class="profile-img-container">
+          <!-- Fallback en caso de que profile-hero.jpg no exista -->
+          <img [src]="profileImageUrl" alt="Edilson Huaman" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Edilson+Huaman&size=500&background=0D1117&color=fff&font-size=0.33'">
+        </div>
+
+        <!-- Iconos Flotantes -->
+        @for (item of floatingIcons; track item.class) {
+          <div class="floating-icon" [ngClass]="item.class" [style.color]="item.color">
+            <fa-icon [icon]="item.icon"></fa-icon>
+          </div>
+        }
+
+        <!-- Snippet de Código -->
+        <div class="code-snippet-card">
+          <div class="code-header">
+            <span class="code-title">&gt;_</span>
+          </div>
+          <div class="code-body">
+            <pre><code><span class="keyword">const</span> <span class="variable">developer</span> = &#123;
+  <span class="property">passion</span>: <span class="string">"Clean Code"</span>,
+  <span class="property">focus</span>: <span class="string">"Performance"</span>,
+  <span class="property">goal</span>: <span class="string">"Impacto Real"</span>
+&#125;;</code></pre>
+          </div>
+        </div>
+        
       </div>
     </div>
     
+  </div>
+
+  <!-- Mouse Scroll Indicator -->
+  <div class="scroll-indicator">
+    <fa-icon [icon]="['fas', 'mouse']"></fa-icon>
+    <span>SCROLL PARA EXPLORAR</span>
   </div>
 </section>

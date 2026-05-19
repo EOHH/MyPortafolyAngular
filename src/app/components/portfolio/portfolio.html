@@ -1,71 +1,124 @@
 <section id="portfolio" class="portfolio-section">
   <div class="container">
-    <div class="section-header">
-      <h2>{{ sectionHeader.title }}</h2>
-      <p>{{ sectionHeader.subtitle }}</p>
+    
+    <!-- Top Header & Stats Row -->
+    <div class="header-row reveal">
+      <div class="section-header">
+        <div class="pill-tag">{{ sectionHeader.tag }}</div>
+        <h2>{{ sectionHeader.title }} <br> <span class="highlight-gradient">{{ sectionHeader.titleHighlight }}</span></h2>
+        <p class="subtitle" [innerHTML]="sectionHeader.subtitle"></p>
+      </div>
+      
+      <div class="stats-box">
+        @for (stat of stats; track stat.label) {
+        <div class="stat-item">
+          <div class="stat-icon">
+            <fa-icon [icon]="stat.icon"></fa-icon>
+          </div>
+          <div class="stat-text">
+            <h3>{{ stat.value }}</h3>
+            <p>{{ stat.label }}</p>
+          </div>
+        </div>
+        }
+      </div>
     </div>
 
-    <!-- Sistema de Filtros -->
-    <div class="portfolio-filters" aria-label="Filtros de proyectos">
-      @for (filter of filters; track filter) {
-        <button 
-          class="filter-btn" 
-          [class.active]="activeFilter === filter"
-          (click)="setFilter(filter)"
-          [attr.aria-pressed]="activeFilter === filter">
-          {{ filter }}
-        </button>
-      }
+    <!-- Toolbar: Filters and View Options -->
+    <div class="portfolio-toolbar reveal">
+      <div class="filters-container">
+        @for (filter of filters; track filter.id) {
+          <button 
+            class="filter-btn" 
+            [class.active]="activeFilter === filter.id"
+            (click)="setFilter(filter.id)">
+            <fa-icon [icon]="filter.icon"></fa-icon> {{ filter.label }}
+          </button>
+        }
+      </div>
+      
+      <div class="view-options">
+        <div class="sort-dropdown">
+          <fa-icon [icon]="['fas', 'check-circle']" class="dropdown-icon" style="opacity: 0;"></fa-icon>
+          <span>Más recientes</span>
+          <fa-icon [icon]="['fas', 'arrow-right']" style="transform: rotate(90deg); margin-left: 10px; font-size: 0.8em;"></fa-icon>
+        </div>
+        <div class="layout-toggles">
+          <button class="toggle-btn active"><fa-icon [icon]="['fas', 'th-large']"></fa-icon></button>
+          <button class="toggle-btn"><fa-icon [icon]="['fas', 'list']"></fa-icon></button>
+        </div>
+      </div>
     </div>
 
-    <!-- Grid de Proyectos -->
+    <!-- Projects Grid -->
     <div class="portfolio-grid">
       @for (project of filteredProjects; track project.id) {
-      <div class="project-card">
-
-        <!-- Imagen y Overlay -->
-        <div class="project-image-wrapper">
-          <img [src]="project.image" [alt]="project.title" class="project-image" loading="lazy">
-          
-          <div class="project-overlay">
-            <div class="overlay-links">
-              @if (project.liveLink !== '#') {
-              <a [href]="project.liveLink" target="_blank" class="overlay-btn" [attr.aria-label]="'Ver Demo de ' + project.title">
-                <fa-icon [icon]="['fas', 'link']"></fa-icon> Demo
-              </a>
-              }
-              @if (project.githubLink !== '#') {
-              <a [href]="project.githubLink" target="_blank" class="overlay-btn" [attr.aria-label]="'Ver Código de ' + project.title">
-                <fa-icon [icon]="['fab', 'github']"></fa-icon> Code
-              </a>
-              }
-            </div>
+      <div class="project-card reveal">
+        
+        <div class="card-image-box">
+          <img [src]="project.image" [alt]="project.title" loading="lazy">
+          @if (project.badge) {
+            <div class="project-badge">{{ project.badge }}</div>
+          }
+          <div class="external-link-icon">
+            <fa-icon [icon]="['fas', 'external-link-alt']"></fa-icon>
           </div>
         </div>
 
-        <!-- Información -->
-        <div class="project-info">
-          <span class="project-date">{{ project.date }}</span>
-          <h4>{{ project.title }}</h4>
-          <p class="project-description">{{ project.description }}</p>
+        <div class="card-content">
+          <div class="project-icon">
+            <fa-icon [icon]="project.icon"></fa-icon>
+          </div>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc" [innerHTML]="project.description"></p>
           
-          <!-- Chips Tecnológicos -->
-          <div class="project-technologies">
-            @for (tech of project.technologies; track tech.name) {
-            <span class="tech-chip">
-              @if (tech.icon) { <fa-icon [icon]="tech.icon"></fa-icon> } {{ tech.name }}
-            </span>
+          <div class="tech-stack">
+            @for (tech of project.technologies; track tech) {
+              <span class="tech-pill">
+                <span class="diamond-icon">◆</span> {{ tech }}
+              </span>
+            }
+          </div>
+
+          <div class="project-actions">
+            @for (btn of project.buttons; track btn.label) {
+              <a [href]="btn.link" class="btn-action">
+                @if(btn.iconLeft) { <fa-icon [icon]="btn.iconLeft"></fa-icon> }
+                {{ btn.label }}
+                @if(btn.iconRight) { <fa-icon [icon]="btn.iconRight"></fa-icon> }
+              </a>
             }
           </div>
         </div>
-
       </div>
       } @empty {
-      <!-- Estado Vacío -->
       <div class="empty-state">
         <p>No hay proyectos que coincidan con "{{ activeFilter }}".</p>
       </div>
       }
     </div>
+
+    <!-- CTA Banner -->
+    <div class="portfolio-cta reveal">
+      <div class="cta-left">
+        <div class="cta-icon-wrapper">
+          <fa-icon [icon]="cta.icon"></fa-icon>
+        </div>
+        <div class="cta-text">
+          <h3>{{ cta.title }}</h3>
+          <p>{{ cta.desc }}</p>
+        </div>
+      </div>
+      
+      <div class="cta-right">
+        <a [href]="cta.buttonLink" class="btn-cta-gradient">
+          {{ cta.buttonText }} <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon>
+        </a>
+        <div class="paper-plane-decoration">
+          <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

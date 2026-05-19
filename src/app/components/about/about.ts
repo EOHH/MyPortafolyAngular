@@ -1,101 +1,78 @@
-// src/app/components/about/about.component.ts
-
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
-// Importa los íconos sólidos que usarás en esta sección
 import {
-  faUser,
-  faCode,
-  faLightbulb,
-  faHandshake,
-  faAward,
-  faGraduationCap,
-  faBriefcase,
-  faCheckCircle,
-  faLaptopCode,
-  faFileAlt,
-  faFolderOpen,
-  faTasks,
-  faCalendarAlt,
-  faEnvelopeOpenText,
-  faComments,
-  faUsers,
-  faTools,
-  faKeyboard,
-  faChartLine,
-  faDatabase
+  faUser, faCode, faBullseye, faBrain, faUsers, 
+  faGraduationCap, faBriefcase, faPaperPlane, faRocket,
+  faStar, faQuoteLeft, faDatabase, faMobileAlt, faFire,
+  faMapMarkerAlt, faLanguage, faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
+
+import {
+  faAngular, faReact, faNodeJs, faJava, faAws, faDocker, faGitAlt,
+  faHtml5, faCss3Alt, faJs, faGithub, faLinkedinIn
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [
-    CommonModule,
-    FontAwesomeModule
-  ],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
 export class AboutComponent implements OnInit {
-
-  // Información personal y profesional
-  aboutMe = {
-    title: 'Sobre Mí',
-    subtitle: 'Conoce mi trayectoria y lo que me impulsa',
-    introduction: `Soy Edilson Huaman, un apasionado Diseñador y Desarrollador de Software Full-Stack con una sólida formación en TECSUP y experiencia en la creación de soluciones digitales eficientes. Mi enfoque se centra en transformar ideas en productos funcionales, con un código limpio y una experiencia de usuario intuitiva.`,
-    philosophy: `Me destaco por mi capacidad para liderar proyectos y mi compromiso con la mejora continua. Mi objetivo es aportar valor a través de la tecnología, optimizando procesos y generando resultados tangibles.`,
-    profileImage: 'assets/img/about-profile.jpg' // Asegúrate de tener una imagen para esta sección
-  };
-
-  // Logros destacados
-  achievements = [
-    {
-      icon: faAward,
-      title: 'Mejor Proyecto de Desarrollo de Software (2023)',
-      description: 'Galardonado en TECSUP por un proyecto innovador.',
-    },
-    {
-      icon: faChartLine,
-      title: 'Incremento de Retención de Usuarios',
-      description: 'Lideré el desarrollo de una aplicación web que incrementó la retención de usuarios en un 20%.',
-    },
-    {
-      icon: faCheckCircle,
-      title: 'Mejora en Procesos Internos',
-      description: 'Reconocimiento por actualización y depuración de base de datos en Editorial Santillana, generando informes más precisos y ágiles.',
-    },
+  
+  focusAreas = [
+    { icon: faCode, title: 'Código limpio', description: 'Escribo código limpio, mantenible y escalable.' },
+    { icon: faBullseye, title: 'Enfoque en valor', description: 'Construyo soluciones que generan impacto real.' },
+    { icon: faBrain, title: 'Aprendizaje constante', description: 'Siempre explorando nuevas tecnologías y mejores prácticas.' },
+    { icon: faUsers, title: 'Trabajo en equipo', description: 'Me adapto, comunico y colaboro para lograr grandes resultados.' }
   ];
 
-  // Habilidades técnicas (puedes ajustar el porcentaje o el nivel)
-  technicalSkills = [
-    { name: 'Diseño y Desarrollo de Software', level: 90, icon: faLaptopCode },
-    { name: 'Gestión de Archivos Digitales (Git)', level: 85, icon: faFolderOpen },
-    { name: 'Bases de Datos', level: 80, icon: faDatabase },
-    { name: 'Herramientas Ofimáticas (MS Office, Google Workspace)', level: 95, icon: faFileAlt },
-    { name: 'CRM Básico', level: 70, icon: faTools },
+  timeline = [
+    { year: '2020', title: 'Inicio de mi camino', desc: 'Comencé mis estudios en Ingeniería de Sistemas y descubrí mi pasión por el desarrollo de software.', icon: faGraduationCap, color: 'purple' },
+    { year: '2021 - 2022', title: 'Primeras experiencias', desc: 'Trabajé en proyectos reales, mejorando mis habilidades en backend y aprendiendo nuevas tecnologías.', icon: faBriefcase, color: 'cyan' },
+    { year: '2023 - Actualidad', title: 'Construyendo soluciones', desc: 'Desarrollo aplicaciones escalables y de alto rendimiento para empresas y clientes de diferentes industrias.', icon: faPaperPlane, color: 'purple-light' }
   ];
 
-  // Habilidades blandas
-  softSkills = [
-    { name: 'Comunicación Efectiva', icon: faComments },
-    { name: 'Trabajo en Equipo', icon: faUsers },
-    { name: 'Organización y Gestión', icon: faTasks },
-    { name: 'Resolución de Problemas', icon: faLightbulb },
-    { name: 'Digitación Rápida y Precisa', icon: faKeyboard }
+  techBackend = [
+    { name: 'Java', icon: faJava, color: '#f89820' },
+    { name: 'Spring Boot', icon: faJava, color: '#6db33f' },
+    { name: 'Node.js', icon: faNodeJs, color: '#68a063' },
+    { name: 'MySQL', icon: faDatabase, color: '#00758f' },
+    { name: 'PostgreSQL', icon: faDatabase, color: '#336791' }
+  ];
+
+  techFrontend = [
+    { name: 'React', icon: faReact, color: '#61dafb' },
+    { name: 'Angular', icon: faAngular, color: '#dd0031' },
+    { name: 'HTML5', icon: faHtml5, color: '#e34f26' },
+    { name: 'CSS3', icon: faCss3Alt, color: '#1572b6' },
+    { name: 'JavaScript', icon: faJs, color: '#f7df1e' }
+  ];
+
+  techMobile = [
+    { name: 'Flutter', icon: faMobileAlt, color: '#02569b' },
+    { name: 'Dart', icon: faCode, color: '#00b4ab' },
+    { name: 'Firebase', icon: faFire, color: '#ffca28' },
+    { name: 'Git', icon: faGitAlt, color: '#f34f29' },
+    { name: 'Docker', icon: faDocker, color: '#2496ed' }
+  ];
+
+  stats = [
+    { value: '10+', label: 'Proyectos completados', icon: faCode, color: 'purple' },
+    { value: '100%', label: 'Comprometido con la calidad', icon: faRocket, color: 'cyan' },
+    { value: '3+', label: 'Años de experiencia', icon: faUsers, color: 'purple-light' },
+    { value: '20K+', label: 'Usuarios impactados', icon: faStar, color: 'orange' }
   ];
 
   private faLibrary = inject(FaIconLibrary);
 
   constructor() {
-    // Añade todos los íconos que usarás en esta sección a la librería
     this.faLibrary.addIcons(
-      faUser, faCode, faLightbulb, faHandshake, faAward, faGraduationCap,
-      faBriefcase, faCheckCircle, faLaptopCode, faFileAlt, faFolderOpen,
-      faTasks, faCalendarAlt, faEnvelopeOpenText, faComments, faUsers,
-      faTools, faKeyboard, faChartLine, faDatabase
+      faUser, faCode, faBullseye, faBrain, faUsers, faGraduationCap, faBriefcase, faPaperPlane, faRocket, faStar, faQuoteLeft, faDatabase, faMobileAlt, faFire, faMapMarkerAlt, faLanguage, faEnvelope,
+      faAngular, faReact, faNodeJs, faJava, faAws, faDocker, faGitAlt, faHtml5, faCss3Alt, faJs, faGithub, faLinkedinIn
     );
   }
 

@@ -1,0 +1,79 @@
+<section id="tech-stack" class="tech-stack-section">
+  <div class="container">
+    
+    <!-- Top Header -->
+    <div class="tech-header-wrapper">
+      <div class="section-tag">
+        <fa-icon [icon]="['fas', 'bolt']"></fa-icon> TECH STACK
+      </div>
+      <h2 class="tech-title">
+        Tecnologías que utilizo para<br>
+        <span class="gradient-text-cyan">construir soluciones reales</span>
+      </h2>
+      <p class="tech-desc">
+        Stack moderno y versátil para desarrollar aplicaciones escalables, seguras y de alto rendimiento.
+      </p>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="tech-bento-grid">
+      @for (category of categories; track category.title) {
+        <div class="tech-category-card" [class.half-width]="category.halfWidth">
+          <div class="cat-header">
+            <fa-icon [icon]="category.icon" class="cat-icon"></fa-icon>
+            <h3>{{ category.title }} <span class="dot"></span></h3>
+          </div>
+
+          <div class="cat-items">
+            @for (item of category.items; track item.name) {
+              <div class="tech-item-card">
+                <div class="tech-logo {{ item.colorClass }}">
+                  @if (item.icon) {
+                    <fa-icon [icon]="item.icon"></fa-icon>
+                  } @else {
+                    <span class="text-logo">{{ item.textIcon }}</span>
+                  }
+                </div>
+                <div class="tech-item-info">
+                  <h4>{{ item.name }}</h4>
+                  <p>{{ item.desc }}</p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Stats Row -->
+    <div class="tech-stats-row">
+      @for (stat of stats; track stat.label) {
+        <div class="stat-box">
+          <div class="stat-icon-wrapper {{ stat.color }}">
+            <fa-icon [icon]="stat.icon"></fa-icon>
+          </div>
+          <div class="stat-text">
+            @if (stat.value) {
+              <span class="stat-val">{{ stat.value }}</span>
+            }
+            <span class="stat-lbl">{{ stat.label }}</span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="tech-cta-card">
+      <div class="cta-left">
+        <div class="cta-icon-wrapper">
+          <fa-icon [icon]="['fas', 'code']"></fa-icon>
+        </div>
+        <p>Siempre estoy aprendiendo y explorando nuevas tecnologías para crear soluciones innovadoras y eficientes.</p>
+      </div>
+      <a href="#portfolio" class="btn-primary-premium">
+        Ver proyectos relacionados <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon>
+      </a>
+    </div>
+
+  </div>
+</section>

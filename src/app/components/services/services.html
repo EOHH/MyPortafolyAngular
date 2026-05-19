@@ -1,29 +1,71 @@
-<section id="services" class="services-section">
+<section id="services" class="specialization-section">
+  <!-- Glowing Decorations -->
+  <div class="dec-hexagon left">
+    <div class="hex-glow cyan"></div>
+    <div class="hex-shape cyan">
+      <fa-icon [icon]="['fas', 'code']"></fa-icon>
+    </div>
+  </div>
+  <div class="dec-hexagon right">
+    <div class="hex-glow purple"></div>
+    <div class="hex-shape purple">
+      <fa-icon [icon]="['fas', 'cube']"></fa-icon>
+    </div>
+  </div>
+
   <div class="container">
-    <div class="section-header">
-      <h2>{{ sectionHeader.title }}</h2>
-      <p>{{ sectionHeader.subtitle }}</p>
+    
+    <!-- Top Header -->
+    <div class="spec-header-wrapper">
+      <div class="section-tag">
+        <fa-icon [icon]="['fas', 'briefcase']"></fa-icon> {{ sectionHeader.tag }}
+      </div>
+      <h2 class="spec-title">
+        {{ sectionHeader.titleStart }}<span class="gradient-text-blue-purple">{{ sectionHeader.titleHighlight }}</span>
+      </h2>
+      <p class="spec-desc">
+        {{ sectionHeader.subtitle }}
+      </p>
     </div>
 
-    <div class="services-grid">
-      @for (service of services; track service.title) {
-      <div class="service-card">
-        <div class="service-icon-wrapper">
-          <fa-icon [icon]="service.icon" class="service-icon"></fa-icon>
+    <!-- The 6-column Bento Grid -->
+    <div class="spec-grid">
+      @for (service of services; track service.id) {
+        <div class="svc-card bento-card {{ service.colorClass }}">
+          <div class="svc-card-inner">
+            
+            <div class="svc-header">
+              <span class="svc-id {{ service.colorClass }}">{{ service.id }}</span>
+              <div class="svc-icon-wrapper {{ service.colorClass }}">
+                <div class="icon-ring {{ service.colorClass }}"></div>
+                <fa-icon [icon]="service.icon"></fa-icon>
+              </div>
+            </div>
+
+            <div class="svc-body">
+              <h3 class="svc-title">{{ service.title }}</h3>
+              <p class="svc-desc">{{ service.description }}</p>
+              
+              <ul class="svc-features">
+                @for (feature of service.features; track feature) {
+                  <li>
+                    <fa-icon [icon]="['fas', 'check-circle']" class="check-icon {{ service.colorClass }}"></fa-icon>
+                    <span>{{ feature }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <div class="svc-footer">
+              <a href="#portfolio" class="btn-link {{ service.colorClass }}">
+                Ver proyectos <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon>
+              </a>
+            </div>
+
+          </div>
         </div>
-        <h3>{{ service.title }}</h3>
-        <p class="service-description">{{ service.description }}</p>
-        <div class="service-technologies">
-          @for (tech of service.technologies; track tech.name) {
-          <span class="tech-tag">
-            @if (tech.icon) { <fa-icon [icon]="tech.icon"></fa-icon> } {{ tech.name }}
-          </span>
-          }
-        </div>
-      </div>
-      } @empty {
-      <p>No hay servicios disponibles.</p>
       }
     </div>
+
   </div>
 </section>

@@ -1,142 +1,120 @@
-// src/app/components/portfolio/portfolio.component.ts
-
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import {
-  faLink,
-  faCode,
-  faLaptopCode,
-  faMobileAlt,
-  faDatabase,
-  faCloud,
-  faUsers,
-  faPaw,
-  faStore,
-  faExchangeAlt,
-  faBuilding,
-  faTools,
-  faChartLine,
-  faShieldAlt,
-  faComments
+  faLink, faCode, faLaptopCode, faMobileAlt, faDatabase, faCloud, faUsers, 
+  faBuilding, faTools, faChartLine, faShieldAlt, faCheckCircle, faExternalLinkAlt, 
+  faShoppingCart, faArrowRight, faPaperPlane, faUniversity, faCubes, faRocket, faLayerGroup, faDesktop, faThLarge, faList
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  faAngular,
-  faReact,
-  faNodeJs,
-  faPython,
-  faHtml5,
-  faCss3Alt,
-  faJs,
-  faJava,
-  faPhp,
-  faAws,
-  faGoogle,
-  faDocker,
-  faWordpress,
-  faGithub
+  faAngular, faReact, faNodeJs, faPython, faHtml5, faCss3Alt, faJs, faJava, 
+  faPhp, faAws, faDocker, faGithub, faGooglePlay
 } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [
-    CommonModule,
-    FontAwesomeModule
-  ],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.css',
 })
 export class PortfolioComponent implements OnInit {
 
   sectionHeader = {
-    title: 'Mis Proyectos',
-    subtitle: 'Una muestra de mi trabajo y soluciones innovadoras'
+    tag: 'MI TRABAJO',
+    title: 'Proyectos que',
+    titleHighlight: 'generan impacto',
+    subtitle: 'Cada proyecto representa un desafío superado, soluciones escalables y <span class="highlight-cyan">valor real</span> para los usuarios.'
   };
 
-  filters = ['Todos', 'Spring Boot', 'React', 'Node.js', 'Flutter'];
+  stats = [
+    { icon: ['fas', 'cubes'] as IconProp, value: '10+', label: 'Proyectos completados' },
+    { icon: ['fas', 'rocket'] as IconProp, value: '100%', label: 'Proyectos en producción' },
+    { icon: ['fas', 'users'] as IconProp, value: '3+', label: 'Años de experiencia' },
+    { icon: ['fas', 'code'] as IconProp, value: '20K+', label: 'Usuarios impactados' }
+  ];
+
+  filters = [
+    { id: 'Todos', label: 'Todos', icon: ['fas', 'layer-group'] as IconProp },
+    { id: 'Full Stack', label: 'Full Stack', icon: ['fas', 'database'] as IconProp },
+    { id: 'Backend', label: 'Backend', icon: ['fas', 'server'] as IconProp },
+    { id: 'Frontend', label: 'Frontend', icon: ['fas', 'desktop'] as IconProp },
+    { id: 'Mobile', label: 'Mobile', icon: ['fas', 'mobile-alt'] as IconProp },
+    { id: 'Cloud', label: 'Cloud', icon: ['fas', 'cloud'] as IconProp }
+  ];
   activeFilter = 'Todos';
 
   projects = [
     {
-      id: 'figuritas-express',
-      image: 'https://placehold.co/600x400/FF6347/FFFFFF?text=Figuritas+Express',
-      title: 'Figuritas Express',
-      date: 'Enero 2024 - Marzo 2024',
-      description: 'Sistema integral para el comercio seguro de figuritas de anime y coleccionables, optimizando transacciones y gestión de inventario.',
-      technologies: [
-        { name: 'React', icon: faReact },
-        { name: 'Spring Boot', icon: faJava },
-        { name: 'Node.js', icon: faNodeJs },
-        { name: 'AWS', icon: faAws }
-      ],
-      liveLink: '#',
-      githubLink: '#'
+      id: 'neoeval',
+      image: 'https://placehold.co/800x500/1e293b/ffffff?text=NeoEval+App',
+      title: 'NeoEval',
+      badge: '⭐ DESTACADO',
+      icon: ['fas', 'university'] as IconProp,
+      description: 'Aplicación educativa completa para evaluaciones académicas. App publicada en Google Play.',
+      categories: ['Mobile', 'Backend', 'Full Stack'],
+      technologies: ['Flutter', 'Dart', 'Spring Boot', 'PostgreSQL', 'Railway'],
+      buttons: [
+        { label: 'Ver detalles', link: '#', style: 'outline', iconRight: ['fas', 'arrow-right'] as IconProp },
+        { label: 'Ver en Google Play', link: '#', style: 'outline', iconLeft: ['fab', 'google-play'] as IconProp, iconRight: ['fas', 'external-link-alt'] as IconProp }
+      ]
     },
     {
-      id: 'tectrade-ecommerce',
-      image: 'https://placehold.co/600x400/1a1a2e/FFFFFF?text=TecTrade+Ecommerce',
-      title: 'TecTrade: Tienda Online',
-      date: 'Abril 2024 - Junio 2024',
-      description: 'Plataforma de comercio electrónico con catálogo de productos, carrito de compras, pasarela de pago y panel de administración.',
-      technologies: [
-        { name: 'React', icon: faReact },
-        { name: 'Node.js', icon: faNodeJs },
-        { name: 'Docker', icon: faDocker },
-        { name: 'JWT', icon: faShieldAlt }
-      ],
-      liveLink: '#',
-      githubLink: '#'
+      id: 'muni-challabamba',
+      image: 'https://placehold.co/800x500/0f172a/ffffff?text=Sistema+Municipal',
+      title: 'Sistema Municipal',
+      icon: ['fas', 'university'] as IconProp,
+      description: 'Sistema institucional para la Municipalidad Distrital de Challabamba con <span class="highlight-cyan">+40% de mejora en rendimiento</span>.',
+      categories: ['Frontend', 'Backend', 'Full Stack'],
+      technologies: ['Spring Boot', 'React', 'MySQL', 'JWT', 'Nginx'],
+      buttons: [
+        { label: 'Ver detalles', link: '#', style: 'outline', iconRight: ['fas', 'arrow-right'] as IconProp },
+        { label: 'Ver código', link: '#', style: 'outline', iconLeft: ['fab', 'github'] as IconProp, iconRight: ['fas', 'external-link-alt'] as IconProp }
+      ]
     },
     {
-      id: 'abrazo-peludo',
-      image: 'https://placehold.co/600x400/FF8C69/FFFFFF?text=Abrazo+Peludo',
-      title: 'Abrazo Peludo',
-      date: 'Julio 2023 - Septiembre 2023',
-      description: 'Aplicación móvil multiplataforma para facilitar la adopción de mascotas, conectando refugios con adoptantes.',
-      technologies: [
-        { name: 'Flutter', icon: faMobileAlt },
-        { name: 'Node.js', icon: faNodeJs },
-        { name: 'Firebase', icon: faCloud }
-      ],
-      liveLink: '#',
-      githubLink: '#'
-    },
-    {
-      id: 'rrhh-system',
-      image: 'https://placehold.co/600x400/3a3a5a/FFFFFF?text=Sistema+RRHH',
-      title: 'Sistema de Gestión RRHH',
-      date: 'Octubre 2023 - Diciembre 2023',
-      description: 'Desarrollo de un sistema interno para la oficina de Recursos Humanos, optimizando la gestión de pagos en planillas y administración de personal.',
-      technologies: [
-        { name: 'Spring Boot', icon: faJava },
-        { name: 'Angular', icon: faAngular },
-        { name: 'MySQL', icon: faDatabase }
-      ],
-      liveLink: '#',
-      githubLink: '#'
+      id: 'tiosam',
+      image: 'https://placehold.co/800x500/2d3748/ffffff?text=E-commerce',
+      title: 'Ediciones Tío Sam',
+      icon: ['fas', 'shopping-cart'] as IconProp,
+      description: 'E-commerce completo con gestión de productos, usuarios y pedidos en tiempo real.',
+      categories: ['Frontend', 'Backend', 'Full Stack'],
+      technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'JWT'],
+      buttons: [
+        { label: 'Ver detalles', link: '#', style: 'outline', iconRight: ['fas', 'arrow-right'] as IconProp },
+        { label: 'Ver código', link: '#', style: 'outline', iconLeft: ['fab', 'github'] as IconProp, iconRight: ['fas', 'external-link-alt'] as IconProp }
+      ]
     }
   ];
+
+  cta = {
+    icon: ['fas', 'code'] as IconProp,
+    title: '¿Tienes una idea en mente?',
+    desc: 'Conversemos sobre tu proyecto y hagámoslo realidad.',
+    buttonText: 'Hablemos de tu proyecto',
+    buttonLink: '#contact'
+  };
 
   private faLibrary = inject(FaIconLibrary);
 
   constructor() {
     this.faLibrary.addIcons(
-      faLink, faCode, faLaptopCode, faMobileAlt, faDatabase,
-      faCloud, faUsers, faPaw, faStore, faExchangeAlt, faBuilding,
-      faTools, faChartLine, faShieldAlt, faComments,
-      faAngular, faReact, faNodeJs, faPython, faHtml5, faCss3Alt,
-      faJs, faJava, faPhp, faAws, faGoogle, faDocker, faWordpress, faGithub
+      faLink, faCode, faLaptopCode, faMobileAlt, faDatabase, faCloud, faUsers, 
+      faBuilding, faTools, faChartLine, faShieldAlt, faCheckCircle, faExternalLinkAlt, 
+      faShoppingCart, faArrowRight, faPaperPlane, faUniversity, faCubes, faRocket, faLayerGroup, faDesktop, faThLarge, faList,
+      faAngular, faReact, faNodeJs, faPython, faHtml5, faCss3Alt, faJs, faJava, 
+      faPhp, faAws, faDocker, faGithub, faGooglePlay
     );
   }
 
   ngOnInit(): void {}
 
-  setFilter(filter: string) {
-    this.activeFilter = filter;
+  setFilter(filterId: string) {
+    this.activeFilter = filterId;
   }
 
   get filteredProjects() {
@@ -144,7 +122,7 @@ export class PortfolioComponent implements OnInit {
       return this.projects;
     }
     return this.projects.filter(project => 
-      project.technologies.some(tech => tech.name === this.activeFilter)
+      project.categories.includes(this.activeFilter)
     );
   }
 }

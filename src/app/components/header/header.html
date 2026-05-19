@@ -1,45 +1,74 @@
-<header class="navbar" [class.scrolled]="isScrolled">
-  <div class="navbar-container">
-    <a href="#hero" class="logo">Gotti<span>Dev</span></a>
+<header class="navbar-wrapper" [class.scrolled]="isScrolled" [class.menu-open]="menuOpen">
+  <!-- Efecto Glow de fondo -->
+  @if (!isScrolled) {
+    <div class="navbar-glow"></div>
+  }
 
-    <nav class="nav-links" [class.active]="menuOpen">
-      <!-- Los enlaces de navegación con íconos -->
-      <a href="#hero" (click)="closeMenu()">
-        <fa-icon [icon]="['fas', 'home']"></fa-icon> Inicio
-      </a>
-      <a href="#about" (click)="closeMenu()">
-        <fa-icon [icon]="['fas', 'user']"></fa-icon> Sobre mí
-      </a>
-      <a href="#services" (click)="closeMenu()">
-        <fa-icon [icon]="['fas', 'code']"></fa-icon> Servicios
-      </a>
-      <a href="#portfolio" (click)="closeMenu()">
-        <fa-icon [icon]="['fas', 'briefcase']"></fa-icon> Proyectos
-      </a>
-      <a href="#pricing" (click)="closeMenu()">
-        <fa-icon [icon]="['fas', 'dollar-sign']"></fa-icon> Precios
-      </a>
-      <a href="#contact" (click)="closeMenu()">
-        <fa-icon [icon]="['fas', 'envelope']"></fa-icon> Contacto
-      </a>
+  <div class="navbar-container">
+    <!-- Hamburguesa Mobile (Izquierda) -->
+    <button class="menu-toggle mobile-only" (click)="toggleMenu()" aria-label="Toggle navigation" [class.open]="menuOpen">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+
+    <!-- Logo (Centro en mobile, Izquierda en desktop) -->
+    <a href="#hero" class="logo" (click)="closeMenu()">
+      <fa-icon [icon]="['fas', 'code']" class="desktop-only"></fa-icon>
+      GOTTI<span>.DEV</span>
+    </a>
+
+    <!-- Nav Links (Desktop) -->
+    <nav class="nav-links desktop-only">
+      <a href="#hero" [class.active-link]="activeSection === 'hero'">Inicio</a>
+      <a href="#about" [class.active-link]="activeSection === 'about'">Sobre mí</a>
+      <a href="#tech-stack" [class.active-link]="activeSection === 'tech-stack'">Tech</a>
+      <a href="#experience" [class.active-link]="activeSection === 'experience'">Experiencia</a>
+      <a href="#portfolio" [class.active-link]="activeSection === 'portfolio'">Proyectos</a>
+      <a href="#pricing" [class.active-link]="activeSection === 'pricing'">Precios</a>
+      <a href="#contact" [class.active-link]="activeSection === 'contact'">Contacto</a>
     </nav>
 
+    <!-- Acciones (Derecha) -->
     <div class="navbar-actions">
-      <!-- Botón Theme Toggle -->
-      <button class="theme-toggle" (click)="themeService.toggleTheme()" [attr.aria-label]="themeService.isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'">
+      <!-- Theme Toggle -->
+      <button class="theme-toggle" (click)="themeService.toggleTheme()" [attr.aria-label]="themeService.isDark ? 'Modo claro' : 'Modo oscuro'">
         <fa-icon [icon]="themeService.isDark ? ['fas', 'sun'] : ['fas', 'moon']"></fa-icon>
       </button>
 
-      <!-- Botón de Llamada a la Acción (CTA) -->
-      <!-- Asegúrate de tener un archivo 'your-cv.pdf' en tu carpeta 'assets' -->
-      <a href="/assets/pdf/CV_Edilson_Huaman_2025.pdf" download class="btn-primary">
-        <fa-icon [icon]="['fas', 'download']"></fa-icon> Mi CV
+      <!-- Botón CV -->
+      <a href="/assets/pdf/CV_Edilson_Huaman_2026.pdf" download class="btn-cv">
+        <fa-icon [icon]="['fas', 'download']"></fa-icon> <span class="desktop-text-btn">Descargar CV</span><span class="mobile-text-btn">CV</span>
       </a>
-
-      <!-- Botón de menú hamburguesa con ícono de Font Awesome -->
-      <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle navigation">
-        <fa-icon [icon]="menuOpen ? ['fas', 'times'] : ['fas', 'bars']"></fa-icon>
-      </button>
     </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div class="mobile-menu" [class.open]="menuOpen">
+    <nav class="mobile-nav-links">
+      <a href="#hero" (click)="closeMenu()" [class.active-link]="activeSection === 'hero'">
+        <fa-icon [icon]="['fas', 'home']"></fa-icon> Inicio
+      </a>
+      <a href="#about" (click)="closeMenu()" [class.active-link]="activeSection === 'about'">
+        <fa-icon [icon]="['fas', 'user']"></fa-icon> Sobre mí
+      </a>
+      <a href="#tech-stack" (click)="closeMenu()" [class.active-link]="activeSection === 'tech-stack'">
+        <fa-icon [icon]="['fas', 'code']"></fa-icon> Tech
+      </a>
+      <a href="#experience" (click)="closeMenu()" [class.active-link]="activeSection === 'experience'">
+        <fa-icon [icon]="['fas', 'briefcase']"></fa-icon> Experiencia
+      </a>
+      <a href="#portfolio" (click)="closeMenu()" [class.active-link]="activeSection === 'portfolio'">
+        <fa-icon [icon]="['fas', 'folder']"></fa-icon> Proyectos
+      </a>
+      <a href="#pricing" (click)="closeMenu()" [class.active-link]="activeSection === 'pricing'">
+        <fa-icon [icon]="['fas', 'tags']"></fa-icon> Precios
+      </a>
+      <a href="#contact" (click)="closeMenu()" [class.active-link]="activeSection === 'contact'">
+        <fa-icon [icon]="['fas', 'envelope']"></fa-icon> Contacto
+      </a>
+    </nav>
   </div>
 </header>

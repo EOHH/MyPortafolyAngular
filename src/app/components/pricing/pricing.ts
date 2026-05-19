@@ -1,101 +1,108 @@
-// src/app/components/pricing/pricing.component.ts
-
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-// Importa los íconos sólidos que usarás en esta sección
 import {
-  faCheck,
-  faTimes,
-  faStar, // Para el plan recomendado
-  faEnvelope, // Para el botón de contacto
-  faRocket, // Para planes más avanzados
-  faCode, // Para desarrollo
-  faHeadset // Para soporte
+  faCheckCircle, faRocket, faCode, faArrowRight, faShieldAlt, faLock, faBolt, faCloud, faHeadset, faStar
 } from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-pricing',
   standalone: true,
-  imports: [
-    CommonModule,
-    FontAwesomeModule
-  ],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './pricing.html',
   styleUrl: './pricing.css',
 })
 export class PricingComponent implements OnInit {
 
   sectionHeader = {
-    title: 'Mis Planes de Servicio',
-    subtitle: 'Encuentra la solución perfecta para tu proyecto'
+    tag: 'PLANES FLEXIBLES',
+    title: 'Soluciones a medida para',
+    titleHighlight: 'cada necesidad',
+    subtitle: 'Elige el plan que mejor se adapte a tu proyecto.\nCalidad, rendimiento y escalabilidad garantizados.'
   };
 
-  pricingPlans = [
+  pricingPlans: {
+    name: string,
+    price: string,
+    period: string,
+    description: string,
+    icon: IconProp,
+    features: { text: string }[],
+    isRecommended: boolean,
+    badgeText?: string,
+    buttonText: string
+  }[] = [
     {
-      name: 'Plan Básico',
-      price: '$500',
-      period: 'por proyecto pequeño',
+      name: 'BÁSICO',
+      price: '299',
+      period: 'Desde',
+      description: 'Ideal para <span class="highlight-cyan">proyectos simples</span>',
+      icon: ['fas', 'rocket'],
       features: [
-        { text: 'Diseño Web Básico (1-3 páginas)', icon: faCheck, available: true },
-        { text: 'Diseño Responsivo', icon: faCheck, available: true },
-        { text: 'Integración de Contenido', icon: faCheck, available: true },
-        { text: 'Soporte Básico (1 mes)', icon: faCheck, available: true },
-        { text: 'Optimización SEO Básica', icon: faTimes, available: false },
-        { text: 'Integración de Base de Datos', icon: faTimes, available: false },
-        { text: 'Funcionalidades Personalizadas', icon: faTimes, available: false },
+        { text: 'Landing Page / Sitio Web' },
+        { text: 'Diseño responsivo' },
+        { text: 'Hasta 5 secciones' },
+        { text: 'Formulario de contacto' },
+        { text: 'Entrega en 7 días' }
       ],
       isRecommended: false,
-      buttonText: 'Solicitar Presupuesto',
-      buttonLink: '#contact'
+      buttonText: 'Solicitar este plan'
     },
     {
-      name: 'Plan Estándar',
-      price: '$1500',
-      period: 'por proyecto mediano',
+      name: 'PROFESIONAL',
+      price: '799',
+      period: 'Desde',
+      description: 'Para <span class="highlight-purple">aplicaciones web</span> completas',
+      icon: ['fas', 'code'],
       features: [
-        { text: 'Diseño Web Avanzado (hasta 10 páginas)', icon: faCheck, available: true },
-        { text: 'Diseño Responsivo Premium', icon: faCheck, available: true },
-        { text: 'Integración de Contenido Dinámico', icon: faCheck, available: true },
-        { text: 'Soporte Estándar (3 meses)', icon: faCheck, available: true },
-        { text: 'Optimización SEO Avanzada', icon: faCheck, available: true },
-        { text: 'Integración de Base de Datos (MySQL/SQL Server)', icon: faCheck, available: true },
-        { text: 'Panel de Administración Básico', icon: faCheck, available: true },
-        { text: 'Funcionalidades Personalizadas', icon: faTimes, available: false },
+        { text: 'Aplicación Full Stack' },
+        { text: 'Frontend + Backend' },
+        { text: 'Base de datos incluida' },
+        { text: 'Autenticación segura (JWT)' },
+        { text: 'Hasta 3 integraciones externas' },
+        { text: 'Entrega en 21 días' },
+        { text: 'Soporte post-entrega (15 días)' }
       ],
-      isRecommended: true, // Este es el plan recomendado
-      buttonText: '¡Empezar Ahora!',
-      buttonLink: '#contact'
+      isRecommended: true,
+      badgeText: 'MÁS POPULAR',
+      buttonText: 'Solicitar este plan'
     },
     {
-      name: 'Plan Premium',
-      price: 'Personalizado',
-      period: 'por proyecto grande',
+      name: 'AVANZADO',
+      price: '1499',
+      period: 'Desde',
+      description: 'Para sistemas <span class="highlight-cyan">empresariales</span>',
+      icon: ['fas', 'rocket'],
       features: [
-        { text: 'Desarrollo Web/App a Medida', icon: faCheck, available: true },
-        { text: 'Diseño UI/UX Personalizado', icon: faCheck, available: true },
-        { text: 'Integración de APIs Complejas', icon: faCheck, available: true },
-        { text: 'Soporte Prioritario (6 meses)', icon: faCheck, available: true },
-        { text: 'Optimización SEO Completa', icon: faCheck, available: true },
-        { text: 'Base de Datos Escalable (MySQL/SQL Server/NoSQL)', icon: faCheck, available: true },
-        { text: 'Panel de Administración Avanzado', icon: faCheck, available: true },
-        { text: 'Desarrollo de Funcionalidades Únicas', icon: faCheck, available: true },
+        { text: 'Sistema completo a medida' },
+        { text: 'Arquitectura escalable' },
+        { text: 'Cloud Deployment (AWS / GCP)' },
+        { text: 'CI/CD y DevOps' },
+        { text: 'Integraciones ilimitadas' },
+        { text: 'Soporte premium (30 días)' },
+        { text: 'Entrega en 30+ días' }
       ],
       isRecommended: false,
-      buttonText: 'Contactar para Presupuesto',
-      buttonLink: '#contact'
+      buttonText: 'Solicitar este plan'
     }
+  ];
+
+  valueProps: { icon: IconProp, title: string, desc: string }[] = [
+    { icon: ['fas', 'shield-alt'], title: 'Código limpio', desc: 'Buenas prácticas y mantenible' },
+    { icon: ['fas', 'lock'], title: 'Seguridad', desc: 'Autenticación y datos protegidos' },
+    { icon: ['fas', 'bolt'], title: 'Rendimiento', desc: 'Apps rápidas y optimizadas' },
+    { icon: ['fas', 'cloud'], title: 'Escalabilidad', desc: 'Soluciones que crecen contigo' },
+    { icon: ['fas', 'headset'], title: 'Soporte', desc: 'Acompañamiento dedicado' }
   ];
 
   private faLibrary = inject(FaIconLibrary);
 
   constructor() {
-    // Añade todos los íconos que usarás en esta sección a la librería
     this.faLibrary.addIcons(
-      faCheck, faTimes, faStar, faEnvelope, faRocket, faCode, faHeadset
+      faCheckCircle, faRocket, faCode, faArrowRight, faShieldAlt, faLock, faBolt, faCloud, faHeadset, faStar
     );
   }
 

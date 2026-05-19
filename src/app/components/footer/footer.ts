@@ -2,52 +2,61 @@ import { Component, OnInit, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import {
-  faArrowUp,
-  faEnvelope,
-  faPhoneAlt,
-  faMapMarkerAlt
+  faArrowUp, faEnvelope, faHome, faUser, faCode, faBriefcase, faFolderOpen,
+  faLaptopCode, faServer, faDesktop, faMobileAlt, faCloud, faPhone, faMapMarkerAlt, faArrowRight, faPaperPlane, faQuoteLeft, faQuoteRight
 } from '@fortawesome/free-solid-svg-icons';
-
-import {
-  faInstagram,
-  faFacebookF,
-  faTwitter,
-  faGithub, // Importa GitHub
-  faLinkedinIn // Importa LinkedIn
-} from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [
-    CommonModule,
-    FontAwesomeModule
-  ],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
 export class FooterComponent implements OnInit {
   currentYear: number;
+
+  developerInfo = {
+    name: 'Edilson',
+    lastName: 'dev',
+    role: 'Desarrollador Full Stack apasionado por construir aplicaciones escalables, seguras y de alto rendimiento que generan impacto real en los negocios.'
+  };
+
+  navLinks: { icon: IconProp, url: string, name: string }[] = [
+    { icon: ['fas', 'home'], url: '#home', name: 'Inicio' },
+    { icon: ['fas', 'user'], url: '#about', name: 'Sobre mí' },
+    { icon: ['fas', 'code'], url: '#tech', name: 'Tech' },
+    { icon: ['fas', 'briefcase'], url: '#experience', name: 'Experiencia' },
+    { icon: ['fas', 'folder-open'], url: '#portfolio', name: 'Proyectos' },
+    { icon: ['fas', 'envelope'], url: '#contact', name: 'Contacto' }
+  ];
+
+  serviceLinks: { icon: IconProp, name: string }[] = [
+    { icon: ['fas', 'laptop-code'], name: 'Desarrollo Full Stack' },
+    { icon: ['fas', 'server'], name: 'Desarrollo Backend' },
+    { icon: ['fas', 'desktop'], name: 'Desarrollo Frontend' },
+    { icon: ['fas', 'mobile-alt'], name: 'Desarrollo Mobile' },
+    { icon: ['fas', 'cloud'], name: 'Cloud & DevOps' }
+  ];
+
+  contactInfo: { icon: IconProp, text: string }[] = [
+    { icon: ['fas', 'envelope'], text: 'edilsonhuaman44@gmail.com' },
+    { icon: ['fas', 'phone'], text: '+51 975 991 831' },
+    { icon: ['fas', 'map-marker-alt'], text: 'San Martin de Porres, Lima, Perú' }
+  ];
+
+  socialLinks: { icon: IconProp, url: string, name: string }[] = [
+    { icon: ['fab', 'github'], url: 'https://github.com/EOHH', name: 'GitHub' },
+    { icon: ['fab', 'linkedin-in'], url: 'https://linkedin.com/in/edilson-oswaldo-huaman-huanca', name: 'LinkedIn' },
+    { icon: ['fas', 'envelope'], url: 'mailto:edilsonhuaman44@gmail.com', name: 'Email' },
+    { icon: ['fas', 'paper-plane'], url: '#contact', name: 'Mensaje' }
+  ];
+
   isScrolled: boolean = false;
-
-  galleryImages = [
-    { src: 'assets/footer-gallery/img1.jpg', alt: 'Galería 1', link: 'https://instagram.com/tu-usuario' },
-    { src: 'assets/footer-gallery/img2.jpg', alt: 'Galería 2', link: 'https://instagram.com/tu-usuario' },
-    { src: 'assets/footer-gallery/img3.jpg', alt: 'Galería 3', link: 'https://instagram.com/tu-usuario' },
-    { src: 'assets/footer-gallery/img4.jpg', alt: 'Galería 4', link: 'https://instagram.com/tu-usuario' },
-    { src: 'assets/footer-gallery/img5.jpg', alt: 'Galería 5', link: 'https://instagram.com/tu-usuario' },
-  ];
-
-  contactInfo = [
-    { icon: faEnvelope, text: 'edilsonhuaman44@gmail.com', type: 'email', link: 'edilsonhuaman44@gmail.com' },
-    { icon: faPhoneAlt, text: '+51 975 991 831', type: 'phone', link: 'tel:+51975991831' },
-    { icon: faInstagram, text: '@edilson_pzk', type: 'instagram', link: 'https://www.instagram.com/edilson_pzk/' },
-    { icon: faTwitter, text: '@GottiDev', type: 'twitter', link: 'https://twitter.com/antoniolealbalba' },
-    { icon: faGithub, text: 'GOTTIDEV', type: 'github', link: 'https://github.com/EOHH' }, // ¡GitHub agregado!
-    { icon: faLinkedinIn, text: 'Edilson Oswaldo Huaman Huanca', type: 'linkedin', link: 'https://www.linkedin.com/in/edilson-oswaldo-huaman-huanca-a25600363/' }, // ¡LinkedIn agregado!
-  ];
 
   private faLibrary = inject(FaIconLibrary);
 
@@ -55,15 +64,8 @@ export class FooterComponent implements OnInit {
     this.currentYear = new Date().getFullYear();
 
     this.faLibrary.addIcons(
-      faArrowUp,
-      faEnvelope,
-      faPhoneAlt,
-      faMapMarkerAlt,
-      faInstagram,
-      faFacebookF,
-      faTwitter,
-      faGithub, // Asegúrate de que estén aquí en la adición de íconos
-      faLinkedinIn
+      faArrowUp, faEnvelope, faGithub, faLinkedinIn, faHome, faUser, faCode, faBriefcase, faFolderOpen,
+      faLaptopCode, faServer, faDesktop, faMobileAlt, faCloud, faPhone, faMapMarkerAlt, faArrowRight, faPaperPlane, faQuoteLeft, faQuoteRight
     );
   }
 
@@ -71,10 +73,12 @@ export class FooterComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 200;
+    this.isScrolled = window.scrollY > 300;
   }
 
   scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    document.body.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }
 }
