@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.contact-section * {
+  box-sizing: border-box;
+}
+
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr auto 1.3fr;
@@ -121,6 +125,7 @@
   font-size: 0.95rem;
   color: var(--text-secondary);
   margin: 0;
+  word-break: break-word;
 }
 
 .arrow-icon {
@@ -385,26 +390,95 @@
 /* =======================================
    RESPONSIVE DESIGN
    ======================================= */
+
+/* Large Tablet / Small Desktop (< 1100px) */
 @media (max-width: 1100px) {
+  .contact-section {
+    padding: 100px 0;
+  }
   .contact-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 40px;
+    padding: 0 30px;
   }
   .contact-middle {
-    display: none;
+    display: none; /* Hide 3D plane and quote to save space */
   }
 }
 
-@media (max-width: 600px) {
+/* Tablet Portrait (< 850px) */
+@media (max-width: 850px) {
   .contact-section {
     padding: 80px 0;
+  }
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .contact-left {
+    align-items: center;
+    text-align: center;
+  }
+  .contact-subtitle {
+    margin-bottom: 30px;
+  }
+  .contact-info-list {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+/* Mobile (< 600px) */
+@media (max-width: 600px) {
+  .contact-section {
+    padding: 70px 0;
+  }
+  .contact-layout {
+    padding: 0 20px;
+    gap: 40px;
   }
   .form-row {
     grid-template-columns: 1fr;
   }
   .form-container {
-    padding: 25px;
+    padding: 30px 20px;
   }
   .contact-title {
     font-size: 2.2rem;
+  }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 60px 0;
+  }
+  .contact-layout {
+    padding: 0 15px;
+  }
+  .contact-title {
+    font-size: 2rem;
+  }
+  .form-container {
+    padding: 25px 15px;
+  }
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  .info-text h4 {
+    font-size: 0.8rem;
+  }
+  .info-text p {
+    font-size: 0.85rem;
+  }
+  .header-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .header-text h3 {
+    font-size: 1.3rem;
   }
 }

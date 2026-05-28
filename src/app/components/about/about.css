@@ -8,6 +8,10 @@
   overflow: hidden;
 }
 
+.about-section * {
+  box-sizing: border-box;
+}
+
 .about-bento {
   max-width: 1400px;
   margin: 0 auto;
@@ -248,6 +252,7 @@
   color: var(--text-muted);
   margin-bottom: 50px;
   max-width: 95%;
+  text-align: justify;
 }
 
 .focus-cards {
@@ -286,6 +291,7 @@
   font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.5;
+  text-align: justify;
 }
 
 /* ================= MIDDLE ROW ================= */
@@ -353,6 +359,7 @@
   color: var(--text-muted);
   margin: 0;
   line-height: 1.5;
+  text-align: justify;
 }
 
 /* Tech Stack */
@@ -463,20 +470,214 @@
 }
 
 /* RESPONSIVE */
+
+/* Large Tablet / Small Desktop (< 1200px) */
 @media (max-width: 1200px) {
-  .about-top-row { grid-template-columns: 1fr; }
-  .profile-card { flex-direction: row; justify-content: flex-start; gap: 40px; padding: 40px; }
-  .profile-img { margin: 0; width: 220px; height: 220px; }
-  .profile-glow-ring { left: 20%; }
-  .focus-cards { grid-template-columns: repeat(2, 1fr); }
+  .about-section {
+    padding: 100px 0 80px 0;
+  }
   
-  .about-middle-row { grid-template-columns: 1fr; }
+  .about-top-row { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .profile-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .profile-card {
+    height: 100%;
+    justify-content: center;
+  }
+  
+  .profile-extras {
+    padding-top: 0;
+    justify-content: space-between;
+  }
+
+  .focus-cards { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  
+  .about-middle-row { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  
+  .stats-card {
+    grid-column: span 2;
+  }
+  
+  .stats-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .stat-item {
+    flex: 1;
+    min-width: 200px;
+  }
 }
 
+/* Tablet (< 992px) */
+@media (max-width: 992px) {
+  .profile-col {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-card {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+  }
+  
+  .profile-img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 0;
+  }
+  
+  .profile-glow-ring {
+    top: 50%;
+    left: 20%;
+    width: 250px;
+    height: 250px;
+  }
+  
+  .availability-badge {
+    width: auto;
+    flex: 1;
+  }
+  
+  .profile-extras {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .extra-card {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .social-bento {
+    width: 100%;
+  }
+  
+  .about-middle-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-card {
+    grid-column: span 1;
+  }
+}
+
+/* Mobile (< 768px) */
 @media (max-width: 768px) {
-  .profile-card { flex-direction: column; text-align: center; padding: 30px; gap: 20px;}
-  .profile-glow-ring { left: 50%; }
-  .focus-cards { grid-template-columns: 1fr; }
-  .quote-card { flex-direction: column; text-align: center; padding: 30px 20px; gap: 20px;}
-  .signature { margin-top: 15px; }
+  .about-section {
+    padding: 80px 0 60px 0;
+  }
+
+  .profile-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-card { 
+    flex-direction: column; 
+    text-align: center; 
+    padding: 30px 20px; 
+    gap: 20px;
+  }
+  
+  .profile-img {
+    margin-bottom: -10px;
+  }
+
+  .profile-glow-ring { 
+    left: 50%; 
+    top: 130px;
+  }
+  
+  .availability-badge {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .profile-extras {
+    flex-direction: column;
+  }
+  
+  .extra-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .focus-cards { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .stats-grid {
+    flex-direction: column;
+  }
+  
+  .quote-card { 
+    flex-direction: column; 
+    text-align: center; 
+    padding: 30px 20px; 
+    gap: 20px;
+  }
+  
+  .signature { 
+    margin-top: 10px; 
+    font-size: 2.5rem;
+  }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+  .about-bento {
+    padding: 0 15px;
+  }
+
+  .bento-card {
+    padding: 20px;
+  }
+  
+  .profile-img {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .profile-glow-ring {
+    width: 200px;
+    height: 200px;
+    top: 110px;
+  }
+  
+  .intro-title {
+    font-size: 1.8rem;
+  }
+  
+  .social-btn {
+    padding: 12px 0;
+    font-size: 1.2rem;
+  }
+  
+  .tech-pill {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .quote-card fa-icon {
+    font-size: 2.5rem;
+  }
+  
+  .quote-card p {
+    font-size: 1.1rem;
+  }
 }

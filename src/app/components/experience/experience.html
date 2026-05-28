@@ -56,6 +56,12 @@
                         </span>
                       }
                     </div>
+                    
+                    @if (exp.playStoreUrl) {
+                      <a [href]="exp.playStoreUrl" target="_blank" class="btn-playstore">
+                        <fa-icon [icon]="['fab', 'google-play']"></fa-icon> Llegar a la Play Store
+                      </a>
+                    }
                   </div>
                 </div>
 

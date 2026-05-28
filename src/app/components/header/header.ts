@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit, AfterViewInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { ThemeService } from '../../services/theme.service';
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   public themeService = inject(ThemeService);
   private faLibrary = inject(FaIconLibrary);
   private platformId = inject(PLATFORM_ID);
+  private cdr = inject(ChangeDetectorRef);
 
   constructor() {
     this.faLibrary.addIcons(
@@ -70,11 +72,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const sections = document.querySelectorAll('section[id], header[id]');
     
     const observer = new IntersectionObserver((entries) => {
+      let activeId = '';
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          this.activeSection = entry.target.id;
+          activeId = entry.target.id;
         }
       });
+      if (activeId && this.activeSection !== activeId) {
+        this.activeSection = activeId;
+        this.cdr.detectChanges(); // <-- Trigger change detection explicitly for Zoneless!
+      }
     }, { threshold: 0.3, rootMargin: '-100px 0px -100px 0px' });
 
     sections.forEach(section => {

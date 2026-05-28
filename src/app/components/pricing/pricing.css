@@ -11,6 +11,10 @@
   position: relative;
 }
 
+.pricing-section * {
+  box-sizing: border-box;
+}
+
 .container {
   max-width: 1300px;
   margin: 0 auto;
@@ -385,39 +389,118 @@
 /* =======================================
    RESPONSIVE DESIGN
    ======================================= */
+   
+/* Large Tablet / Small Desktop (< 1100px) */
 @media (max-width: 1100px) {
+  .pricing-section {
+    padding: 80px 0;
+  }
+
   .pricing-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
   }
+  
   .pricing-card.recommended {
     transform: none;
     order: -1;
     grid-column: 1 / -1;
     max-width: 600px;
     margin: 0 auto;
+    padding-top: 40px;
+  }
+
+  .props-grid {
+    justify-content: center;
   }
 }
 
+/* Tablet (< 900px) */
 @media (max-width: 900px) {
   .prop-item:not(:last-child)::after {
     display: none;
   }
+  
+  .props-grid {
+    justify-content: center;
+    gap: 20px;
+  }
+
   .prop-item {
-    min-width: 250px;
-    margin-bottom: 15px;
+    min-width: 45%;
+    margin-bottom: 10px;
   }
 }
 
+/* Mobile (< 768px) */
 @media (max-width: 768px) {
+  .pricing-section {
+    padding: 60px 0;
+  }
+
+  .section-header {
+    margin-bottom: 50px;
+  }
+
+  .section-header h2 {
+    font-size: 2.2rem;
+  }
+
   .pricing-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
+
+  .pricing-card {
+    padding: 30px;
+  }
+  
   .pricing-card.recommended {
     grid-column: auto;
+    max-width: 100%;
+    padding-top: 40px;
   }
+
   .props-grid {
     flex-direction: column;
     align-items: flex-start;
+    gap: 20px;
+  }
+
+  .prop-item {
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 0;
   }
 }
 
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+  .pricing-section {
+    padding: 50px 0;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .pricing-card {
+    padding: 25px 20px;
+  }
+
+  .pricing-card.recommended {
+    padding-top: 35px;
+  }
+
+  .amount {
+    font-size: 2.5rem;
+  }
+
+  .value-props-banner {
+    padding: 25px 20px;
+  }
+}

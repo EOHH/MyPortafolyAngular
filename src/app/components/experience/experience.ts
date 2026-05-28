@@ -24,6 +24,7 @@ export interface ExperienceItem {
   impact: string[];
   icon: any;
   colorClass: string;
+  playStoreUrl?: string;
 }
 
 @Component({
@@ -57,7 +58,8 @@ export class ExperienceComponent implements OnInit {
         'Mantenimiento continuo en Google Play.'
       ],
       icon: faMobileAlt,
-      colorClass: 'cyan'
+      colorClass: 'cyan',
+      playStoreUrl: 'https://play.google.com/store/apps/details?id=com.gottidev.neoeval'
     },
     {
       id: 2,
