@@ -151,7 +151,10 @@
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+}
+
+.footer-logo fa-icon {
+  margin-right: 10px;
 }
 
 .footer-logo span {

@@ -21,8 +21,8 @@ export class FooterComponent implements OnInit {
   currentYear: number;
 
   developerInfo = {
-    name: 'Edilson',
-    lastName: 'dev',
+    name: 'GOTTI',
+    lastName: 'DEV',
     role: 'Desarrollador Full Stack apasionado por construir aplicaciones escalables, seguras y de alto rendimiento que generan impacto real en los negocios.'
   };
 

@@ -82,7 +82,7 @@
 
           <div class="project-actions">
             @for (btn of project.buttons; track btn.label) {
-              <a [href]="btn.link" class="btn-action">
+              <a [href]="btn.link" (click)="openUrl(btn.link, $event)" class="btn-action">
                 @if(btn.iconLeft) { <fa-icon [icon]="btn.iconLeft"></fa-icon> }
                 {{ btn.label }}
                 @if(btn.iconRight) { <fa-icon [icon]="btn.iconRight"></fa-icon> }
@@ -92,7 +92,7 @@
         </div>
       </div>
       } @empty {
-      <div class="empty-state">
+      <div class="empty-state reveal">
         <p>No hay proyectos que coincidan con "{{ activeFilter }}".</p>
       </div>
       }

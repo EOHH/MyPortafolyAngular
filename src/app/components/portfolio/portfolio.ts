@@ -60,7 +60,7 @@ export class PortfolioComponent implements OnInit {
       technologies: ['Flutter', 'Dart', 'Spring Boot', 'PostgreSQL', 'Railway'],
       buttons: [
         { label: 'Ver detalles', link: '#', style: 'outline', iconRight: ['fas', 'arrow-right'] as IconProp },
-        { label: 'Ver en Google Play', link: '#', style: 'outline', iconLeft: ['fab', 'google-play'] as IconProp, iconRight: ['fas', 'external-link-alt'] as IconProp }
+        { label: 'Ver en Google Play', link: 'https://play.google.com/store/apps/details?id=com.gottidev.neoeval', style: 'outline', iconLeft: ['fab', 'google-play'] as IconProp, iconRight: ['fas', 'external-link-alt'] as IconProp }
       ]
     },
     {
@@ -115,6 +115,12 @@ export class PortfolioComponent implements OnInit {
 
   setFilter(filterId: string) {
     this.activeFilter = filterId;
+    // Re-aplicar la clase active a los nuevos elementos generados para que se muestren
+    setTimeout(() => {
+      document.querySelectorAll('.project-card, .empty-state').forEach(el => {
+        el.classList.add('active');
+      });
+    }, 50);
   }
 
   get filteredProjects() {
@@ -124,5 +130,20 @@ export class PortfolioComponent implements OnInit {
     return this.projects.filter(project => 
       project.categories.includes(this.activeFilter)
     );
+  }
+
+  openUrl(url?: string, event?: Event) {
+    if (event && url !== '#') {
+      event.preventDefault();
+    }
+    if (!url || url === '#') return;
+    try {
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+        window.location.href = url;
+      }
+    } catch (e) {
+      window.location.href = url;
+    }
   }
 }

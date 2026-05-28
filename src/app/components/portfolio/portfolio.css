@@ -385,6 +385,17 @@
   border-color: rgba(var(--accent-cyan-rgb), 0.3);
 }
 
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px dashed var(--border-color);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
 /* =======================================
    CTA BANNER (Bottom)
    ======================================= */
