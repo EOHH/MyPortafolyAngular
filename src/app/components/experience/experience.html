@@ -58,9 +58,9 @@
                     </div>
                     
                     @if (exp.playStoreUrl) {
-                      <a [href]="exp.playStoreUrl" target="_blank" class="btn-playstore">
+                      <button (click)="openUrl(exp.playStoreUrl)" class="btn-playstore">
                         <fa-icon [icon]="['fab', 'google-play']"></fa-icon> Llegar a la Play Store
-                      </a>
+                      </button>
                     }
                   </div>
                 </div>

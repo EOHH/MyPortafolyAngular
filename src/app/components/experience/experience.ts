@@ -137,4 +137,17 @@ export class ExperienceComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  openUrl(url?: string) {
+    if (!url) return;
+    try {
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      // Fallback if popup blocker intercepts or if running in restricted iframe
+      if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+        window.location.href = url;
+      }
+    } catch (e) {
+      window.location.href = url;
+    }
+  }
 }
